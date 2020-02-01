@@ -28,6 +28,7 @@
         this.load.image('bg', 'assets/bg.png');
         this.load.image('player', 'assets/player.png');
         this.load.image('wall', 'assets/wall.png');
+        this.load.audio('poppins_quality_whistling', ['assets/Poppins_Quality_Whistling_2.mp3']);
     }
 
     function create ()
@@ -35,6 +36,8 @@
         this.add.image(400, 320, 'bg');
         this.add.image(400, 400, 'wall');
         this.add.image(400, 200, 'player');
+        happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
+        happyBackgroundMusic.play();
     }
     </script>
 
