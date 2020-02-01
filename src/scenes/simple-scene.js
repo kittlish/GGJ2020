@@ -12,12 +12,9 @@ export class SimpleScene extends Phaser.Scene {
 
   create () {
     this.add.image(400, 320, 'bg');
-    this.add.image(200, 200, 'winSquare');
-    //this.add.image(400, 400, 'wall');
-    //this.add.image(400, 200, 'player');
+
     const happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
     happyBackgroundMusic.play();
-
 
     //Create walls physics object
     const walls = this.physics.add.staticGroup();
@@ -29,6 +26,8 @@ export class SimpleScene extends Phaser.Scene {
 
     this.physics.add.collider(player, walls);
 
+    //Create winSquare physics object
+    const winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
     // Creates object for input with arrow keys
     const moveKeys = this.input.keyboard.addKeys({
@@ -76,7 +75,7 @@ export class SimpleScene extends Phaser.Scene {
     });
 
     this.input.keyboard.on('keydown_SPACE', (event) => {
-      if (inRange(player, player)) {
+      if (inRange(player, winSquare)) {
         this.displayWinText();
       }
     });
