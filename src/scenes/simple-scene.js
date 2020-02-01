@@ -73,8 +73,10 @@ export class SimpleScene extends Phaser.Scene {
         player.setVelocityX(0);
     });
 
-    this.input.keyboard.on('keydown_SPACE', function (event){
-      this.add.text(10,10,'Hello');
+    this.input.keyboard.on('keydown_SPACE', function (event) {
+      var lol = this.add.text(10,10,'Winner!', {});
+      lol.setStroke('#000', 8);
+      lol.setShadow(2, 2, "#333333", 2, true, true);
     });
   }
 
