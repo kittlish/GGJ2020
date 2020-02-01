@@ -14,7 +14,7 @@
         physics: {
         default: 'arcade',
             arcade: {
-                gravity: { y: 300 },
+                gravity: { y: 0},
                 debug: true
             }
         }
@@ -42,8 +42,8 @@
     function create ()
     {
         this.add.image(400, 320, 'bg');
-        //this.add.image(400, 400, 'wall');
-        //this.add.image(400, 200, 'player');
+        this.add.image(400, 400, 'wall');
+        this.add.image(400, 200, 'player');
         happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
         happyBackgroundMusic.play();
         
