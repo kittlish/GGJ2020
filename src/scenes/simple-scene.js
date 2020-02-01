@@ -13,22 +13,8 @@ export class SimpleScene extends Phaser.Scene {
   create () {
     this.setupMovement();
     this.playMusic();
+    this.setupEnvironmentAndPlayer();
     
-    this.add.image(400, 320, 'bg');
-
-    //Create walls physics object
-    const walls = this.physics.add.staticGroup();
-    walls.create(400, 400, 'wall');
-
-    //Create winSquare physics object
-    const winSquare = this.physics.add.sprite(200, 200, 'winSquare');
-
-    //Player Object
-    const player = this.physics.add.sprite(400, 200, 'player');
-    player.setCollideWorldBounds(true);
-
-    this.physics.add.collider(player, walls);
-
     this.input.keyboard.on('keydown_SPACE', (event) => {
       if (inRange(player, winSquare)) {
         this.displayWinText();
@@ -94,5 +80,22 @@ export class SimpleScene extends Phaser.Scene {
   playMusic() {
      const happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
       happyBackgroundMusic.play();
+  }
+
+  setupEnvironmentAndPlayer() {
+    this.add.image(400, 320, 'bg');
+
+    //Create walls physics object
+    const walls = this.physics.add.staticGroup();
+    walls.create(400, 400, 'wall');
+
+    //Create winSquare physics object
+    const winSquare = this.physics.add.sprite(200, 200, 'winSquare');
+
+    //Player Object
+    const player = this.physics.add.sprite(400, 200, 'player');
+    player.setCollideWorldBounds(true);
+
+    this.physics.add.collider(player, walls);
   }
 }
