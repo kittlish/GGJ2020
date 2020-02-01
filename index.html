@@ -11,6 +11,14 @@
         width: 25 * 32,
         height: 20 * 32,
         //scene: scenes;
+        physics: {
+        default: 'arcade',
+            arcade: {
+                gravity: { y: 0 },
+                debug: true
+            }
+        }
+        
         scene: {
             preload: preload,
             create: create
@@ -34,10 +42,21 @@
     function create ()
     {
         this.add.image(400, 320, 'bg');
-        this.add.image(400, 400, 'wall');
-        this.add.image(400, 200, 'player');
+        //this.add.image(400, 400, 'wall');
+        //this.add.image(400, 200, 'player');
         happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
         happyBackgroundMusic.play();
+        
+        //Create walls physics object
+        walls = this.physics.add.staticGroup();
+        walls.create(400, 400, 'wall');
+        
+        //Player Object
+        player = this.physics.add.sprite(400, 200, 'player');
+        player.setCollideWorldBounds(true);
+        
+        this.physics.add.collider(player, walls);
+        
     }
     </script>
 
