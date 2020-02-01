@@ -63,7 +63,7 @@
         this.physics.add.collider(player, walls);
 
 
-        // Creates object for input with WASD kets
+        // Creates object for input with arrow kets
 
 
         moveKeys = this.input.keyboard.addKeys({
@@ -73,11 +73,10 @@
             'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
         });
         
-        interactKeys = this.input.keyboard.addKeys({
-            'space': Phaser.Input.Keyboard.KeyCodes.SPACE
-        });
+        
 
-        // Enables movement of player with WASD keys
+
+        // Enables movement of player with arrow keys
         this.input.keyboard.on('keydown_UP', function (event) {
             player.setVelocityY(-playerSpeed);
         });
@@ -108,13 +107,8 @@
             if (moveKeys['left'].isUp)
                 player.setVelocityX(0);
         });
+    }
         
-        
-        this.input.keyboard.on('keydown_SPACE', function(event){
-            if(interactKeys['space'].isDown){
-                
-            }
-        });
 
 
     </script>
