@@ -1,3 +1,5 @@
+import inRange from '../lib/inRange';
+
 export class SimpleScene extends Phaser.Scene {
 
   preload () {
@@ -74,13 +76,19 @@ export class SimpleScene extends Phaser.Scene {
     });
 
     this.input.keyboard.on('keydown_SPACE', (event) => {
-      var winningText = this.add.text(10,10,'Winner!');
-      winningText.setStroke('#000', 8);
-      winningText.setShadow(2, 2, "#333333", 2, true, true);
+      if (inRange(player, player)) {
+        this.displayWinText();
+      }
     });
   }
 
   update() {
 
+  }
+
+  displayWinText() {
+    var winningText = this.add.text(10, 10, 'Winner!');
+    winningText.setStroke('#000', 8);
+    winningText.setShadow(2, 2, "#333333", 2, true, true);
   }
 }
