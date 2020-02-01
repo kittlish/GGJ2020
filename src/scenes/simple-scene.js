@@ -20,14 +20,14 @@ export class SimpleScene extends Phaser.Scene {
     const walls = this.physics.add.staticGroup();
     walls.create(400, 400, 'wall');
 
+    //Create winSquare physics object
+    const winSquare = this.physics.add.sprite(200, 200, 'winSquare');
+
     //Player Object
     const player = this.physics.add.sprite(400, 200, 'player');
     player.setCollideWorldBounds(true);
 
     this.physics.add.collider(player, walls);
-
-    //Create winSquare physics object
-    const winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
     // Creates object for input with arrow keys
     const moveKeys = this.input.keyboard.addKeys({
