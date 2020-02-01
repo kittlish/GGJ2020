@@ -18,7 +18,7 @@
                 debug: true
             }
         },
-        
+
         scene: {
             preload: preload,
             create: create
@@ -30,6 +30,9 @@
     //scenes.push(TitleScene);
     //scenes.push()
     var game = new Phaser.Game(config);
+        
+    var player;
+    var walls;
     var playerSpeed = 160;
 
     function preload ()
@@ -47,27 +50,31 @@
         //this.add.image(400, 200, 'player');
         happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
         happyBackgroundMusic.play();
-        
-        
+
+
         //Create walls physics object
         walls = this.physics.add.staticGroup();
         walls.create(400, 400, 'wall');
-        
+
         //Player Object
         player = this.physics.add.sprite(400, 200, 'player');
         player.setCollideWorldBounds(true);
-        
+
         this.physics.add.collider(player, walls);
-        
-        
+
+
         // Creates object for input with WASD kets
-        
-        
+
+
         moveKeys = this.input.keyboard.addKeys({
             'up': Phaser.Input.Keyboard.KeyCodes.UP,
             'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
             'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
             'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
+        });
+        
+        interactKeys = this.input.keyboard.addKeys({
+            'space': Phaser.Input.Keyboard.KeyCodes.SPACE
         });
 
         // Enables movement of player with WASD keys
@@ -100,9 +107,8 @@
         this.input.keyboard.on('keyup_RIGHT', function (event) {
             if (moveKeys['left'].isUp)
                 player.setVelocityX(0);
-        }); 
-        
-    }
+        });
+
     </script>
 
 </body>
