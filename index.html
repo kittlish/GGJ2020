@@ -21,7 +21,8 @@
 
         scene: {
             preload: preload,
-            create: create
+            create: create,
+            update: update
         }
     };
 
@@ -34,6 +35,13 @@
     var player;
     var walls;
     var playerSpeed = 160;
+        
+    var interaction;
+        
+    var winLeft;
+    var winRight;
+    var winUp;
+    var winDown;
 
     function preload ()
     {
@@ -41,11 +49,13 @@
         this.load.image('player', 'assets/botty.png');
         this.load.image('wall', 'assets/wall.png');
         this.load.audio('poppins_quality_whistling', ['assets/Poppins_Quality_Whistling_2.mp3']);
+        this.load.image('winSquare', 'assets/npc.png');
     }
 
     function create ()
     {
         this.add.image(400, 320, 'bg');
+        this.add.image(200, 200, 'winSquare');
         //this.add.image(400, 400, 'wall');
         //this.add.image(400, 200, 'player');
         happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
@@ -73,7 +83,7 @@
             'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
         });
         
-        
+        //interaction.add.text(10, 10, '', { font: '48px Arial', fill: '#000000' });
 
 
         // Enables movement of player with arrow keys
@@ -107,7 +117,17 @@
             if (moveKeys['left'].isUp)
                 player.setVelocityX(0);
         });
+        
+        this.input.keyboard.on('keydown_SPACE', function (event){
+            this.add.text(10,10,'Hello');            
+        });
     }
+        
+    function update(){
+        
+    }
+        
+
         
 
 
