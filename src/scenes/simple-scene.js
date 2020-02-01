@@ -11,10 +11,10 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   create () {
+    this.setupMovement();
+    this.playMusic();
+    
     this.add.image(400, 320, 'bg');
-
-    const happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
-    happyBackgroundMusic.play();
 
     //Create walls physics object
     const walls = this.physics.add.staticGroup();
@@ -29,6 +29,24 @@ export class SimpleScene extends Phaser.Scene {
 
     this.physics.add.collider(player, walls);
 
+    this.input.keyboard.on('keydown_SPACE', (event) => {
+      if (inRange(player, winSquare)) {
+        this.displayWinText();
+      }
+    });
+  }
+
+  update() {
+
+  }
+
+  displayWinText() {
+    var winningText = this.add.text(10, 10, 'Winner!');
+    winningText.setStroke('#000', 8);
+    winningText.setShadow(2, 2, "#333333", 2, true, true);
+  }
+
+  setupMovement() {
     // Creates object for input with arrow keys
     const moveKeys = this.input.keyboard.addKeys({
       'up': Phaser.Input.Keyboard.KeyCodes.UP,
@@ -38,9 +56,6 @@ export class SimpleScene extends Phaser.Scene {
     });
 
     const playerSpeed = 160;
-
-    //interaction.add.text(10, 10, '', { font: '48px Arial', fill: '#000000' });
-
 
     // Enables movement of player with arrow keys
     this.input.keyboard.on('keydown_UP', function (event) {
@@ -74,20 +89,10 @@ export class SimpleScene extends Phaser.Scene {
         player.setVelocityX(0);
     });
 
-    this.input.keyboard.on('keydown_SPACE', (event) => {
-      if (inRange(player, winSquare)) {
-        this.displayWinText();
-      }
-    });
   }
 
-  update() {
-
-  }
-
-  displayWinText() {
-    var winningText = this.add.text(10, 10, 'Winner!');
-    winningText.setStroke('#000', 8);
-    winningText.setShadow(2, 2, "#333333", 2, true, true);
+  playMusic() {
+     const happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
+      happyBackgroundMusic.play();
   }
 }
