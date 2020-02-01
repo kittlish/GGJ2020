@@ -11,12 +11,12 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   create () {
-    this.setupMovement();
     this.playMusic();
     this.setupEnvironmentAndPlayer();
+    this.setupMovement();
     
     this.input.keyboard.on('keydown_SPACE', (event) => {
-      if (inRange(player, winSquare)) {
+      if (inRange(this.player, this.winSquare)) {
         this.displayWinText();
       }
     });
@@ -44,35 +44,35 @@ export class SimpleScene extends Phaser.Scene {
     const playerSpeed = 160;
 
     // Enables movement of player with arrow keys
-    this.input.keyboard.on('keydown_UP', function (event) {
-      player.setVelocityY(-playerSpeed);
+    this.input.keyboard.on('keydown_UP', (event) => {
+      this.player.setVelocityY(-playerSpeed);
     });
-    this.input.keyboard.on('keydown_DOWN', function (event) {
-      player.setVelocityY(playerSpeed);
+    this.input.keyboard.on('keydown_DOWN', (event) => {
+      this.player.setVelocityY(playerSpeed);
     });
-    this.input.keyboard.on('keydown_LEFT', function (event) {
-      player.setVelocityX(-playerSpeed);
+    this.input.keyboard.on('keydown_LEFT', (event) => {
+      this.player.setVelocityX(-playerSpeed);
     });
-    this.input.keyboard.on('keydown_RIGHT', function (event) {
-      player.setVelocityX(playerSpeed);
+    this.input.keyboard.on('keydown_RIGHT', (event) => {
+      this.player.setVelocityX(playerSpeed);
     });
 
     // Stops player acceleration on uppress of WASD keys
-    this.input.keyboard.on('keyup_UP', function (event) {
+    this.input.keyboard.on('keyup_UP', (event) => {
       if (moveKeys['down'].isUp)
-        player.setVelocityY(0);
+        this.player.setVelocityY(0);
     });
-    this.input.keyboard.on('keyup_DOWN', function (event) {
+    this.input.keyboard.on('keyup_DOWN', (event) => {
       if (moveKeys['up'].isUp)
-        player.setVelocityY(0);
+        this.player.setVelocityY(0);
     });
-    this.input.keyboard.on('keyup_LEFT', function (event) {
+    this.input.keyboard.on('keyup_LEFT', (event) => {
       if (moveKeys['right'].isUp)
-        player.setVelocityX(0);
+        this.player.setVelocityX(0);
     });
-    this.input.keyboard.on('keyup_RIGHT', function (event) {
+    this.input.keyboard.on('keyup_RIGHT', (event) => {
       if (moveKeys['left'].isUp)
-        player.setVelocityX(0);
+        this.player.setVelocityX(0);
     });
 
   }
@@ -90,12 +90,12 @@ export class SimpleScene extends Phaser.Scene {
     walls.create(400, 400, 'wall');
 
     //Create winSquare physics object
-    const winSquare = this.physics.add.sprite(200, 200, 'winSquare');
+    this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
     //Player Object
-    const player = this.physics.add.sprite(400, 200, 'player');
-    player.setCollideWorldBounds(true);
+    this.player = this.physics.add.sprite(400, 200, 'player');
+    this.player.setCollideWorldBounds(true);
 
-    this.physics.add.collider(player, walls);
+    this.physics.add.collider(this.player, walls);
   }
 }
