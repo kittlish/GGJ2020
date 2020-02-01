@@ -36,6 +36,8 @@ export class SimpleScene extends Phaser.Scene {
       'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
     });
 
+    const playerSpeed = 160;
+
     //interaction.add.text(10, 10, '', { font: '48px Arial', fill: '#000000' });
 
 
