@@ -74,9 +74,9 @@ export class SimpleScene extends Phaser.Scene {
     });
 
     this.input.keyboard.on('keydown_SPACE', function (event) {
-      var lol = this.add.text(10,10,'Winner!', {});
-      lol.setStroke('#000', 8);
-      lol.setShadow(2, 2, "#333333", 2, true, true);
+      var winningText = this.add.text(10,10,'Winner!', {});
+      winningText.setStroke('#000', 8);
+      winningText.setShadow(2, 2, "#333333", 2, true, true);
     });
   }
 
