@@ -36,7 +36,7 @@ export default function setupDialog(scene){
     var myline;
 
     var lines = [
-      { speaker: 'Dr. R', line: 'Dr. Rednose: Hello-ho-ho-ho you, over there! Please, help me!' },
+      { speaker: 'Dr. R', line: 'Dr. Rednose: Hello-ho-ho-ho you, over there! Please, help me! (space to continue)' },
       { speaker: 'Healda', line: 'Healda: o.O ...' },
       { speaker: 'Dr. R', line: 'well?' },
       { speaker: 'Healda', line: 'bee boop' },
