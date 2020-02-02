@@ -1,5 +1,8 @@
 import inRange from '../lib/inRange';
 
+let controls;
+let player;
+
 export class SimpleScene extends Phaser.Scene {
 
   preload () {
@@ -8,9 +11,54 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image('wall', 'assets/wall.png');
     this.load.audio('poppins_quality_whistling', ['assets/Poppins_Quality_Whistling_2.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
+
+    this.load.image("tiles", "assets/tilesets/pretty_boy.png");
+    this.load.tilemapTiledJSON("map", "assets/tilesets/pretty_boy.json");
   }
 
   create () {
+    const map = this.make.tilemap({ key: "map" });
+
+    const tileset = map.addTilesetImage('Untitled-4', 'tiles');
+    const floorLayer = map.createStaticLayer("Floors", tileset, 0, 0);
+    const wallsLayer = map.createStaticLayer("Walls", tileset, 0, 0);
+    wallsLayer.setCollisionByProperty({ collides: true });
+    wallsLayer.setCollisionBetween(12, 44);
+
+    const debugGraphics = this.add.graphics().setAlpha(0.75);
+    wallsLayer.renderDebug(debugGraphics, {
+      tileColor: null, // Color of non-colliding tiles
+      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+      faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+    });
+
+    const camera = this.cameras.main;
+
+    player = this.physics.add.sprite(400, 350, "atlas", "misa-front");
+
+    // Set up the arrows to control the camera
+    const cursors = this.input.keyboard.createCursorKeys();
+    controls = new Phaser.Cameras.Controls.FixedKeyControl({
+      camera: camera,
+      left: cursors.left,
+      right: cursors.right,
+      up: cursors.up,
+      down: cursors.down,
+      speed: 0.5
+    });
+
+    // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
+    camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+
+    // Help text that has a "fixed" position on the screen
+    this.add
+      .text(20, 16, "Arrow keys to scroll", {
+        font: "18px monospace",
+        fill: "#ffffff",
+        padding: { x: 20, y: 10 },
+        backgroundColor: "#000000"
+      })
+      .setScrollFactor(0);
     this.playMusic();
     this.setupEnvironmentAndPlayer();
     this.setupMovement();
@@ -20,10 +68,18 @@ export class SimpleScene extends Phaser.Scene {
         this.displayWinText();
       }
     });
+    this.physics.add.collider(player, wallsLayer);
   }
 
-  update() {
+  update (time,delta) {
+    const speed = 175;
+    controls.update(delta);
 
+    player.body.setVelocity(0);
+
+
+    // Normalize and scale the velocity so that player can't move faster along a diagonal
+    player.body.velocity.normalize().scale(speed);
   }
 
   displayWinText() {
@@ -79,23 +135,21 @@ export class SimpleScene extends Phaser.Scene {
 
   playMusic() {
      const happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
-      happyBackgroundMusic.play();
+      // happyBackgroundMusic.play();
   }
 
   setupEnvironmentAndPlayer() {
-    this.add.image(400, 320, 'bg');
-
     //Create walls physics object
-    const walls = this.physics.add.staticGroup();
-    walls.create(400, 400, 'wall');
+    // const walls = this.physics.add.staticGroup();
+    // walls.create(400, 400, 'wall');
 
     //Create winSquare physics object
-    this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
+    // this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
     //Player Object
     this.player = this.physics.add.sprite(400, 200, 'player');
     this.player.setCollideWorldBounds(true);
-
-    this.physics.add.collider(this.player, walls);
+    //
+    // this.physics.add.collider(this.player, walls);
   }
 }
