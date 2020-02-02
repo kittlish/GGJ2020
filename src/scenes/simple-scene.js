@@ -2,9 +2,6 @@ import inRange from '../lib/inRange';
 import callText from '../lib/callText.js';
 import configText from '../lib/configText'
 
-
-let controls;
-
 export class SimpleScene extends Phaser.Scene {
 
   preload () {
@@ -25,11 +22,11 @@ export class SimpleScene extends Phaser.Scene {
   create () {
     this.setupMusic();
     this.displayHelpText();
-    const map = this.make.tilemap({ key: "map" });
+    this.map = this.make.tilemap({ key: "map" });
 
-    const tileset = map.addTilesetImage('Untitled-4', 'tiles');
-    const floorLayer = map.createStaticLayer("Floors", tileset, 0, 0);
-    const wallsLayer = map.createStaticLayer("Walls", tileset, 0, 0);
+    const tileset = this.map.addTilesetImage('Untitled-4', 'tiles');
+    const floorLayer = this.map.createStaticLayer("Floors", tileset, 0, 0);
+    const wallsLayer = this.map.createStaticLayer("Walls", tileset, 0, 0);
     wallsLayer.setCollisionByProperty({ collides: true });
     wallsLayer.setCollisionBetween(12, 44);
 
@@ -40,24 +37,7 @@ export class SimpleScene extends Phaser.Scene {
       faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
     });
 
-    const camera = this.cameras.main;
-
-    // Set up the arrows to control the camera
-    const cursors = this.input.keyboard.createCursorKeys();
-    controls = new Phaser.Cameras.Controls.FixedKeyControl({
-      camera: camera,
-      left: cursors.left,
-      right: cursors.right,
-      up: cursors.up,
-      down: cursors.down,
-      speed: 0.5
-    });
-
-    // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
-    camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
-      
-
+    this.letCameraPan();
     this.setupDialog();    
     this.setupEnvironmentAndPlayer();
     this.setupMovement();
@@ -72,7 +52,7 @@ export class SimpleScene extends Phaser.Scene {
 
   update (time,delta) {
     const speed = 175;
-    controls.update(delta);
+    this.controls.update(delta);
 
     // this.player.body.setVelocity(0);
 
@@ -361,5 +341,23 @@ export class SimpleScene extends Phaser.Scene {
       }
       startingLine++;
     });
+  }
+
+  letCameraPan() {
+    const camera = this.cameras.main;
+
+    // Set up the arrows to control the camera
+    const cursors = this.input.keyboard.createCursorKeys();
+    this.controls = new Phaser.Cameras.Controls.FixedKeyControl({
+      camera: camera,
+      left: cursors.left,
+      right: cursors.right,
+      up: cursors.up,
+      down: cursors.down,
+      speed: 0.5
+    });
+
+    // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
+    camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
   }
 }
