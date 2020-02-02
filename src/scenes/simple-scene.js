@@ -212,6 +212,7 @@ export class SimpleScene extends Phaser.Scene {
     this.anims.create({ key: 'ghostWalkingRight', frames: ghostWalkingRightFrames, frameRate: 6, repeat: -1 });
     
     this.ghost1.anims.play('ghostWalkingRight');
+    this.ghost1.setScale(2, 2);
   }
 
   setupDrRedNose() {
