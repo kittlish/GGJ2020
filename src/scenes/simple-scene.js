@@ -27,7 +27,6 @@ export class SimpleScene extends Phaser.Scene {
 
   create () {
     this.setupMusic();
-    this.displayHelpText();
     this.setupMap();
 
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
@@ -88,19 +87,6 @@ export class SimpleScene extends Phaser.Scene {
 
     // this.backgroundMusic.play({loop: true});
   }
-
-  displayHelpText() {
-    // Help text that has a "fixed" position on the screen
-    this.add
-      .text(20, 16, "arrow keys to move", {
-        font: "18px monospace",
-        fill: "#ffffff",
-        padding: { x: 20, y: 10 },
-        backgroundColor: "#000000"
-      })
-      .setScrollFactor(0);
-  }
-
 
 
   setupMap() {

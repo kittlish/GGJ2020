@@ -91,6 +91,7 @@ export default function setupDialog(scene){
         startingLine = (startingLine + 1) % (lines.length + 1);
         if (startingLine == lines.length) {
           setupPlayerMovement(scene, scene.player, scene.steps);
+          displayHelpText(scene);
         }
       }else{
         drRText.setText('');
@@ -99,4 +100,16 @@ export default function setupDialog(scene){
     });
 
 
+}
+
+function displayHelpText(scene) {
+  // Help text that has a "fixed" position on the screen
+  scene.add
+    .text(20, 16, "arrow keys to move", {
+      font: "18px monospace",
+      fill: "#ffffff",
+      padding: { x: 20, y: 10 },
+      backgroundColor: "#000000"
+    })
+    .setScrollFactor(0);
 }
