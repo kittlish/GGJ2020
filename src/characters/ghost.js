@@ -9,5 +9,6 @@ export default (scene, coordX, coordY) => {
 
     ghost1.anims.play('ghostWalkingRight');
     ghost1.setScale(2, 2);
+    ghost1.setCollideWorldBounds(true);
     return ghost1;
 }
