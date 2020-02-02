@@ -2,6 +2,8 @@ import inRange from '../lib/inRange';
 import callText from '../lib/callText.js';
 import configText from '../lib/configText';
 import displayInteractText from '../lib/displayInteractText';
+import coordinates from '../lib/coordinates';
+import drRedNoseCharacter from '../characters/DrRedNose';
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -142,7 +144,7 @@ export class SimpleScene extends Phaser.Scene {
 
   setupEnvironmentAndPlayer() {
     //Create winSquare physics object
-    this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
+    this.winSquare = this.physics.add.sprite(...coordinates(23,3), 'winSquare');
 
     this.setupGhost();
     this.setupDrRedNose();
@@ -164,21 +166,11 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   setupDrRedNose() {
-    this.drRedNose = this.physics.add.sprite(200, 500);
- 
-    var drRedNoseFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'npc/dr-red-nose/', suffix: '.png'
-    });
-    this.anims.create({ key: 'drRedNoseStanding', frames: drRedNoseFrames, frameRate: 6, repeat: -1 });
-    
-    this.drRedNose.anims.play('drRedNoseStanding');
-    this.drRedNose.setScale(2, 2);
-
+    this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
   }
 
   setupPlayer() {
-    this.player = this.physics.add.sprite(320, 200, 'playerBase');
+    this.player = this.physics.add.sprite(...coordinates(10, 17), 'playerBase');
     this.player.setSize(10,15);
     this.player.setOffset(0,30);
     this.player.setScale(1.5);
