@@ -21,8 +21,8 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image('winSquare', 'assets/npc.png');
     this.load.image('playerBase', 'assets/player_base.png');
     this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
-    this.load.image("allSpritesImage", "assets/ggj2020.png");
-    this.load.tilemapTiledJSON("chadMap", "assets/Chad.json");
+    this.load.image("coyMapTilesImage", "assets/map-tiles.png");
+    this.load.tilemapTiledJSON("omegaBuilding", "assets/Omega Building.json");
   }
 
   create () {
@@ -104,12 +104,11 @@ export class SimpleScene extends Phaser.Scene {
 
 
   setupMap() {
-    this.map = this.make.tilemap({ key: "chadMap" });
+    this.map = this.make.tilemap({ key: "omegaBuilding" });
 
-    const tileset = this.map.addTilesetImage('screen', 'allSpritesImage');
-    const floorLayer = this.map.createStaticLayer("Floor", tileset, 0, 0);
-    this.wallsLayer = this.map.createStaticLayer("Walls", tileset, 0, 0);
-    this.wallsLayer.setCollisionByProperty({ collides: true });
+    const tileset = this.map.addTilesetImage('coy-map-tiles', 'coyMapTilesImage');
+    this.wallsLayer = this.map.createStaticLayer("Omega Building Main Layer", tileset, 0, 0);
+    this.wallsLayer.setCollisionByProperty({ collide: true });
   }
 }
 
