@@ -10,6 +10,7 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image('player', 'assets/Healda/standing/default/right.png');
     this.load.image('wall', 'assets/wall.png');
     this.load.audio('main_background_music', ['assets/game jam music draft 1.0.mp3']);
+    this.load.audio('steps', ['assets/Steps.mp3']);
     this.load.audio('spooky', ['assets/spooookieeee.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
     this.load.multiatlas('healdaSprites', 'assets/Healda/healda.json', 'assets/Healda');
@@ -18,7 +19,7 @@ export class SimpleScene extends Phaser.Scene {
     
 
   create () {
-    this.playMusic();
+    this.setupMusic();
     this.setupEnvironmentAndPlayer();
     this.setupMovement();
       
@@ -117,20 +118,22 @@ export class SimpleScene extends Phaser.Scene {
     this.input.keyboard.on('keydown_UP', (event) => {
       this.player.setVelocityY(-playerSpeed);
       this.player.anims.play('grayPlayerWalkingUp');
-
+      this.steps.play();
     });
     this.input.keyboard.on('keydown_DOWN', (event) => {
       this.player.setVelocityY(playerSpeed);
       this.player.anims.play('grayPlayerWalkingDown');
-
+      this.steps.play();
     });
     this.input.keyboard.on('keydown_LEFT', (event) => {
       this.player.setVelocityX(-playerSpeed);
       this.player.anims.play('grayPlayerWalkingLeft');
+      this.steps.play();
     });
     this.input.keyboard.on('keydown_RIGHT', (event) => {
       this.player.setVelocityX(playerSpeed);
       this.player.anims.play('grayPlayerWalkingRight');
+      this.steps.play();
     });
 
     const allKeysAreUp = function () { return moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp; }
@@ -140,32 +143,47 @@ export class SimpleScene extends Phaser.Scene {
       if (moveKeys['down'].isUp) {
         this.player.setVelocityY(0);
       }
-      if (allKeysAreUp()) { console.log('lol'); this.player.anims.stop(null, 1) }
+      if (allKeysAreUp()) {
+        this.player.anims.stop(null, 1)
+        this.steps.pause();
+      }
     });
     this.input.keyboard.on('keyup_DOWN', (event) => {
       if (moveKeys['up'].isUp) {
         this.player.setVelocityY(0);
       }
-      if (allKeysAreUp()) { console.log('lol'); this.player.anims.stop(null, 1) }
+      if (allKeysAreUp()) {
+        this.player.anims.stop(null, 1)
+        this.steps.pause();
+      }
     });
     this.input.keyboard.on('keyup_LEFT', (event) => {
       if (moveKeys['right'].isUp) {
         this.player.setVelocityX(0);
       }
-      if (allKeysAreUp()) { console.log('lol'); this.player.anims.stop(null, 1) }
+      if (allKeysAreUp()) {
+        this.player.anims.stop(null, 1)
+        this.steps.pause();
+      }
     });
     this.input.keyboard.on('keyup_RIGHT', (event) => {
       if (moveKeys['left'].isUp) {
         this.player.setVelocityX(0);
       }
-      if (allKeysAreUp()) { console.log('lol'); this.player.anims.stop(null, 1) }
+      if (allKeysAreUp()) {
+        this.player.anims.stop(null, 1)
+        this.steps.pause();
+      }
     });
 
   }
 
-  playMusic() {
-     const happyBackgroundMusic = this.sound.add('main_background_music');
-      happyBackgroundMusic.play();
+  setupMusic() {
+    this.backgroundMusic = this.sound.add('main_background_music');
+    this.steps = this.sound.add('steps');
+    this.spooky = this.sound.add('spooky');
+
+    // this.backgroundMusic.play();
   }
 
   setupEnvironmentAndPlayer() {
