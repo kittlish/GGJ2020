@@ -28,7 +28,6 @@ export class SimpleScene extends Phaser.Scene {
     this.displayHelpText();
     this.setupMap();
 
-    this.letCameraPan();
     this.setupDialog();    
 
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
@@ -40,6 +39,10 @@ export class SimpleScene extends Phaser.Scene {
 
     setupPlayerMovement(this, this.player, this.steps);
 
+    // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
+    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+
+
     this.input.keyboard.on('keydown_SPACE', (event) => {
       if (inRange(this.player, this.winSquare)) {
         this.displayWinText();
@@ -48,7 +51,8 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   update (time,delta) {
-    this.controls.update(delta);
+    // follow character
+    this.cameras.main.centerOn(this.player.x, this.player.y)
   }
     
   displayWinText() {
@@ -149,24 +153,6 @@ export class SimpleScene extends Phaser.Scene {
         healdaText.setText('');
       }
     });
-  }
-
-  letCameraPan() {
-    const camera = this.cameras.main;
-
-    // Set up the arrows to control the camera
-    const cursors = this.input.keyboard.createCursorKeys();
-    this.controls = new Phaser.Cameras.Controls.FixedKeyControl({
-      camera: camera,
-      left: cursors.left,
-      right: cursors.right,
-      up: cursors.up,
-      down: cursors.down,
-      speed: 0.5
-    });
-
-    // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
-    camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
   }
 
   setupMap() {
