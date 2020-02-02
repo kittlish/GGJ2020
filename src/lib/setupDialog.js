@@ -15,7 +15,7 @@ export default function setupDialog(scene){
       notResult = string.slice(result.length, string.length);
       string = result + '\n' + trimLine(notResult);
     }
-    
+
     return string;
   }
 
@@ -36,8 +36,8 @@ export default function setupDialog(scene){
     var myline;
 
     var lines = [
-      { speaker: 'Dr. R', line: 'Hello-ho-ho-ho you, over there! Please, help me!' },
-      { speaker: 'Healda', line: 'o.O ...' },
+      { speaker: 'Dr. R', line: 'Dr. Rednose: Hello-ho-ho-ho you, over there! Please, help me!' },
+      { speaker: 'Healda', line: 'Healda: o.O ...' },
       { speaker: 'Dr. R', line: 'well?' },
       { speaker: 'Healda', line: 'bee boop' },
       { speaker: 'Dr. R', line: 'do you even understand me?' },

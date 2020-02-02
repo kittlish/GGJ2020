@@ -14,22 +14,38 @@ export default function setupMovement (scene, player, walkingSounds) {
     // Enables movement of player with arrow keys
     scene.input.keyboard.on('keydown_UP', (event) => {
         player.setVelocityY(-playerSpeed);
-        player.anims.play('grayPlayerWalkingUp');
+        if (player.healed) {
+            player.anims.play('playerWalkingUp');
+        } else { // injured
+            player.anims.play('grayPlayerWalkingUp');
+        }
         walkingSounds.play();
     });
     scene.input.keyboard.on('keydown_DOWN', (event) => {
         player.setVelocityY(playerSpeed);
-        player.anims.play('grayPlayerWalkingDown');
+        if (player.healed) {
+            player.anims.play('playerWalkingDown');
+        } else { // injured
+            player.anims.play('grayPlayerWalkingDown');
+        }
         walkingSounds.play();
     });
     scene.input.keyboard.on('keydown_LEFT', (event) => {
         player.setVelocityX(-playerSpeed);
-        player.anims.play('grayPlayerWalkingLeft');
+        if (player.healed) {
+            player.anims.play('playerWalkingLeft');
+        } else { // injured
+            player.anims.play('grayPlayerWalkingLeft');
+        }
         walkingSounds.play();
     });
     scene.input.keyboard.on('keydown_RIGHT', (event) => {
         player.setVelocityX(playerSpeed);
-        player.anims.play('grayPlayerWalkingRight');
+        if (player.healed) {
+            player.anims.play('playerWalkingRight');
+        } else { // injured
+            player.anims.play('grayPlayerWalkingRight');
+        }
         walkingSounds.play();
     });
 

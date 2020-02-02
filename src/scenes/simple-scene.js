@@ -15,6 +15,7 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image('bg', 'assets/bg.png');
     this.load.image('wall', 'assets/wall.png');
     this.load.audio('main_background_music', ['assets/the little robot that could.ogg']);
+    this.load.audio('victory_music', ['assets/the little robot that won.ogg']);
     this.load.audio('steps', ['assets/Steps.mp3']);
     this.load.audio('spooky', ['assets/spooookieeee.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
@@ -29,12 +30,20 @@ export class SimpleScene extends Phaser.Scene {
     this.displayHelpText();
     this.setupMap();
 
-    //this.setupDialog();
-
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
     this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
     this.player = playerCharacter(this, ...coordinates(10, 17));
     this.winSquare = this.physics.add.sprite(...coordinates(23, 3), 'winSquare');
+
+    //The things the player can interact with in the game.  When the player is nearby, they'll be prompted with help text.
+    var interactables = [this.drRedNose, this.winSquare];
+    for(var i = 0; i < interactables.length; i++){
+      this.physics.add.overlap(this.player, interactables[i], () => {
+        displayInteractText(this, this.cameras);
+      }, null, true);
+    }
+
+    
 
     // set up interactions between things
     this.physics.add.collider(this.player, this.wallsLayer);
@@ -65,8 +74,11 @@ export class SimpleScene extends Phaser.Scene {
     winningText.setShadow(2, 2, "#333333", 2, true, true);
     callText(winningText, 'Winner!');
 
-    const spooky = this.sound.add('spooky');
-    spooky.play();
+    this.player.healed = true;
+    this.backgroundMusic.stop();
+    victoryTheme(this);
+
+    //DISABLECONTROLS HERE
   }
 
   setupMusic() {
@@ -74,7 +86,7 @@ export class SimpleScene extends Phaser.Scene {
     this.steps = this.sound.add('steps');
     this.spooky = this.sound.add('spooky');
 
-    this.backgroundMusic.play({loop: true});
+    // this.backgroundMusic.play({loop: true});
   }
 
   displayHelpText() {
@@ -99,4 +111,9 @@ export class SimpleScene extends Phaser.Scene {
     this.wallsLayer = this.map.createStaticLayer("Walls", tileset, 0, 0);
     this.wallsLayer.setCollisionByProperty({ collides: true });
   }
+}
+
+function victoryTheme(scene) {
+  const victoryMusic = scene.sound.add('victory_music');
+  victoryMusic.play();
 }
