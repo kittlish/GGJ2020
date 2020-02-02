@@ -92,7 +92,7 @@ export class SimpleScene extends Phaser.Scene {
   displayHelpText() {
     // Help text that has a "fixed" position on the screen
     this.add
-      .text(20, 16, "Arrow keys to scroll", {
+      .text(20, 16, "arrow keys to move", {
         font: "18px monospace",
         fill: "#ffffff",
         padding: { x: 20, y: 10 },
