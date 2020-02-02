@@ -140,18 +140,13 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   setupEnvironmentAndPlayer() {
-    //Create walls physics object
-    const walls = this.physics.add.staticGroup();
-    walls.create(400, 400, 'wall');
-
     //Create winSquare physics object
     this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
     this.setupGhost();
     this.setupDrRedNose();
     this.setupPlayer();
-    this.physics.add.collider(this.player, walls);
-    
+    this.physics.add.collider(this.player, this.wallsLayer);    
   }
 
   setupGhost() {
