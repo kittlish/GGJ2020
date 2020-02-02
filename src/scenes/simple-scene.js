@@ -72,7 +72,9 @@ export class SimpleScene extends Phaser.Scene {
 
     this.cameras.main.centerOn(this.player.x, this.player.y);
 
-    updateGhostMovement(this.ghost, this.player);
+    if (this.drRedNose.doneTalking) {
+      updateGhostMovement(this.ghost, this.player);
+    }
   }
 
   winner() {
