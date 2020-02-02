@@ -1,7 +1,7 @@
 export default (scene, coordX, coordY) => {
     var player = scene.physics.add.sprite(coordX, coordY, 'playerBase');
-    player.setSize(10, 15);
-    player.setOffset(0, 30);
+    player.setSize(12, 10);
+    player.setOffset(1, 30);
     player.setScale(1.5);
     player.healed = false;
 
