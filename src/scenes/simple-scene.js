@@ -1,3 +1,5 @@
+import inRange from '../lib/inRange';
+
 export class SimpleScene extends Phaser.Scene {
 
   preload () {
@@ -9,25 +11,28 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   create () {
-    this.add.image(400, 320, 'bg');
-    this.add.image(200, 200, 'winSquare');
-    //this.add.image(400, 400, 'wall');
-    //this.add.image(400, 200, 'player');
-    const happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
-    happyBackgroundMusic.play();
+    this.playMusic();
+    this.setupEnvironmentAndPlayer();
+    this.setupMovement();
+    
+    this.input.keyboard.on('keydown_SPACE', (event) => {
+      if (inRange(this.player, this.winSquare)) {
+        this.displayWinText();
+      }
+    });
+  }
 
+  update() {
 
-    //Create walls physics object
-    const walls = this.physics.add.staticGroup();
-    walls.create(400, 400, 'wall');
+  }
 
-    //Player Object
-    const player = this.physics.add.sprite(400, 200, 'player');
-    player.setCollideWorldBounds(true);
+  displayWinText() {
+    var winningText = this.add.text(10, 10, 'Winner!');
+    winningText.setStroke('#000', 8);
+    winningText.setShadow(2, 2, "#333333", 2, true, true);
+  }
 
-    this.physics.add.collider(player, walls);
-
-
+  setupMovement() {
     // Creates object for input with arrow keys
     const moveKeys = this.input.keyboard.addKeys({
       'up': Phaser.Input.Keyboard.KeyCodes.UP,
@@ -38,47 +43,59 @@ export class SimpleScene extends Phaser.Scene {
 
     const playerSpeed = 160;
 
-    //interaction.add.text(10, 10, '', { font: '48px Arial', fill: '#000000' });
-
-
     // Enables movement of player with arrow keys
-    this.input.keyboard.on('keydown_UP', function (event) {
-      player.setVelocityY(-playerSpeed);
+    this.input.keyboard.on('keydown_UP', (event) => {
+      this.player.setVelocityY(-playerSpeed);
     });
-    this.input.keyboard.on('keydown_DOWN', function (event) {
-      player.setVelocityY(playerSpeed);
+    this.input.keyboard.on('keydown_DOWN', (event) => {
+      this.player.setVelocityY(playerSpeed);
     });
-    this.input.keyboard.on('keydown_LEFT', function (event) {
-      player.setVelocityX(-playerSpeed);
+    this.input.keyboard.on('keydown_LEFT', (event) => {
+      this.player.setVelocityX(-playerSpeed);
     });
-    this.input.keyboard.on('keydown_RIGHT', function (event) {
-      player.setVelocityX(playerSpeed);
+    this.input.keyboard.on('keydown_RIGHT', (event) => {
+      this.player.setVelocityX(playerSpeed);
     });
 
     // Stops player acceleration on uppress of WASD keys
-    this.input.keyboard.on('keyup_UP', function (event) {
+    this.input.keyboard.on('keyup_UP', (event) => {
       if (moveKeys['down'].isUp)
-        player.setVelocityY(0);
+        this.player.setVelocityY(0);
     });
-    this.input.keyboard.on('keyup_DOWN', function (event) {
+    this.input.keyboard.on('keyup_DOWN', (event) => {
       if (moveKeys['up'].isUp)
-        player.setVelocityY(0);
+        this.player.setVelocityY(0);
     });
-    this.input.keyboard.on('keyup_LEFT', function (event) {
+    this.input.keyboard.on('keyup_LEFT', (event) => {
       if (moveKeys['right'].isUp)
-        player.setVelocityX(0);
+        this.player.setVelocityX(0);
     });
-    this.input.keyboard.on('keyup_RIGHT', function (event) {
+    this.input.keyboard.on('keyup_RIGHT', (event) => {
       if (moveKeys['left'].isUp)
-        player.setVelocityX(0);
+        this.player.setVelocityX(0);
     });
 
-    this.input.keyboard.on('keydown_SPACE', function (event){
-      this.add.text(10,10,'Hello');
-    });
   }
 
-  update() {
+  playMusic() {
+     const happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
+      happyBackgroundMusic.play();
+  }
 
+  setupEnvironmentAndPlayer() {
+    this.add.image(400, 320, 'bg');
+
+    //Create walls physics object
+    const walls = this.physics.add.staticGroup();
+    walls.create(400, 400, 'wall');
+
+    //Create winSquare physics object
+    this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
+
+    //Player Object
+    this.player = this.physics.add.sprite(400, 200, 'player');
+    this.player.setCollideWorldBounds(true);
+
+    this.physics.add.collider(this.player, walls);
   }
 }
