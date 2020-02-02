@@ -19,8 +19,8 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image('winSquare', 'assets/npc.png');
     this.load.image('playerBase', 'assets/player_base.png');
     this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
-    this.load.image("tiles", "assets/tilesets/pretty_boy.png");
-    this.load.tilemapTiledJSON("map", "assets/tilesets/pretty_boy.json");
+    this.load.image("allSpritesImage", "assets/ggj2020.png");
+    this.load.tilemapTiledJSON("chadMap", "assets/Chad.json");
   }
 
   create () {
@@ -28,7 +28,6 @@ export class SimpleScene extends Phaser.Scene {
     this.displayHelpText();
     this.setupMap();
 
-    this.letCameraPan();
     this.setupDialog();    
 
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
@@ -36,29 +35,29 @@ export class SimpleScene extends Phaser.Scene {
     this.player = playerCharacter(this, ...coordinates(10, 17));
     this.winSquare = this.physics.add.sprite(...coordinates(23, 3), 'winSquare');
 
+    // set up interactions between things
     this.physics.add.collider(this.player, this.wallsLayer);
 
     setupPlayerMovement(this, this.player, this.steps);
+
+    // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
+    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+
 
     this.input.keyboard.on('keydown_SPACE', (event) => {
       if (inRange(this.player, this.winSquare)) {
         this.displayWinText();
       }
     });
-    this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   update (time,delta) {
-    const speed = 125;
-    this.controls.update(delta);
-    // Horizontal movement
-
-    // Normalize and scale the velocity so that player can't move faster along a diagonal
-    this.player.body.velocity.normalize().scale(speed);
+    // follow character
+    this.cameras.main.centerOn(this.player.x, this.player.y)
   }
     
   displayWinText() {
-    var winningText = this.add.text(10, 10, 'Winner!');
+    var winningText = this.add.text(700, 100, 'Winner!');
     winningText.setStroke('#000', 8);
     winningText.setShadow(2, 2, "#333333", 2, true, true);
     callText(winningText, 'Winner!');
@@ -157,29 +156,11 @@ export class SimpleScene extends Phaser.Scene {
     });
   }
 
-  letCameraPan() {
-    const camera = this.cameras.main;
-
-    // Set up the arrows to control the camera
-    const cursors = this.input.keyboard.createCursorKeys();
-    this.controls = new Phaser.Cameras.Controls.FixedKeyControl({
-      camera: camera,
-      left: cursors.left,
-      right: cursors.right,
-      up: cursors.up,
-      down: cursors.down,
-      speed: 0.5
-    });
-
-    // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
-    camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-  }
-
   setupMap() {
-    this.map = this.make.tilemap({ key: "map" });
+    this.map = this.make.tilemap({ key: "chadMap" });
 
-    const tileset = this.map.addTilesetImage('Untitled-4', 'tiles');
-    const floorLayer = this.map.createStaticLayer("Floors", tileset, 0, 0);
+    const tileset = this.map.addTilesetImage('screen', 'allSpritesImage');
+    const floorLayer = this.map.createStaticLayer("Floor", tileset, 0, 0);
     this.wallsLayer = this.map.createStaticLayer("Walls", tileset, 0, 0);
     this.wallsLayer.setCollisionByProperty({ collides: true });
   }
