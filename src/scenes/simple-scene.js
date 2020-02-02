@@ -39,7 +39,10 @@ export class SimpleScene extends Phaser.Scene {
         {speaker: 'Dr. R', line: 'do you even understand me?'},
         {speaker: 'Healda', line: '[nods]'},
         {speaker: 'Dr. R', line: 'Oh you don\'t speak do you? Well never mind that, you must help me! That would be the nice thing to do and you wouldn\'t happen to be one of the naughty ones, would you? You don’t seem the naughty type...'},
-        {speaker: 'Healda', line: 'o.o'}
+        {speaker: 'Healda', line: 'o.o'},
+        {speaker: 'Dr. R', line: 'Anywho, my arch nemesis Dr. Blitzen von Vixen has stolen my formula for my medicine! I am deathly ill and I need that cure!'},
+        {speaker: 'Dr. R', line: 'Could you please explore this Omega Building and find the formula?'},
+        {speaker: 'Dr. R', line: 'Also… there may or may not be evil  deadly robots lurking in here…'}
                 
     ]
       
