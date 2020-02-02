@@ -4,7 +4,6 @@ import configText from '../lib/configText'
 
 
 let controls;
-let player;
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -42,8 +41,6 @@ export class SimpleScene extends Phaser.Scene {
     });
 
     const camera = this.cameras.main;
-
-    player = this.physics.add.sprite(400, 350, "atlas", "misa-front");
 
     // Set up the arrows to control the camera
     const cursors = this.input.keyboard.createCursorKeys();
@@ -124,23 +121,26 @@ export class SimpleScene extends Phaser.Scene {
         startingLine++;
     });
     
+    this.setupEnvironmentAndPlayer();
+    this.setupMovement();
+
     this.input.keyboard.on('keydown_SPACE', (event) => {
       if (inRange(this.player, this.winSquare)) {
         this.displayWinText();
       }
     });
-    this.physics.add.collider(player, wallsLayer);
+    this.physics.add.collider(this.player, wallsLayer);
   }
 
   update (time,delta) {
     const speed = 175;
     controls.update(delta);
 
-    player.body.setVelocity(0);
+    // this.player.body.setVelocity(0);
 
 
     // Normalize and scale the velocity so that player can't move faster along a diagonal
-    player.body.velocity.normalize().scale(speed);
+    this.player.body.velocity.normalize().scale(speed);
   }
     
   displayWinText() {
@@ -357,7 +357,5 @@ export class SimpleScene extends Phaser.Scene {
         backgroundColor: "#000000"
       })
       .setScrollFactor(0);
-    this.setupEnvironmentAndPlayer();
-    this.setupMovement();
   }
 }
