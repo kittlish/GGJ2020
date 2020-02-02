@@ -264,9 +264,14 @@ export class SimpleScene extends Phaser.Scene {
     });
     this.anims.create({ key: 'grayPlayerWalkingDown', frames: grayPlayerWalkingDownFrames, frameRate: 6, repeat: -1 });
 
+    // this.anims.create({ key: 'blueBottom', frames: [{ key: 'allSprites', frame: 'level/Blue bottom.png'}] })
+    this.anims.create({ key: 'playerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/default/right.png" }] })
+    this.anims.create({ key: 'playerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/default/back.png" }] })
+    this.anims.create({ key: 'playerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/default/left.png" }] })
+    this.anims.create({ key: 'playerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/default/front.png" }] })
 
 
-    this.player.anims.play('playerWalkingRight');
+    this.player.anims.play('playerStandingDown');
     this.player.setCollideWorldBounds(true);
   }
 }
