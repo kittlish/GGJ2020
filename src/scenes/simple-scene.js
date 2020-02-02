@@ -48,7 +48,7 @@ export class SimpleScene extends Phaser.Scene {
     // set up interactions between things
     this.physics.add.collider(this.player, this.wallsLayer);
 
-    setupPlayerMovement(this, this.player, this.steps);
+    // setupPlayerMovement(this, this.player, this.steps);
 
     // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
