@@ -57,7 +57,7 @@ export class SimpleScene extends Phaser.Scene {
   }
     
   displayWinText() {
-    var winningText = this.add.text(10, 10, 'Winner!');
+    var winningText = this.add.text(700, 100, 'Winner!');
     winningText.setStroke('#000', 8);
     winningText.setShadow(2, 2, "#333333", 2, true, true);
     callText(winningText, 'Winner!');
