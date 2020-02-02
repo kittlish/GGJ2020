@@ -110,30 +110,32 @@ export class SimpleScene extends Phaser.Scene {
       this.player.anims.play('walkingRight');
     });
 
+    const allKeysAreUp = function () { return moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp; }
+
     // Stops player acceleration on uppress of WASD keys
     this.input.keyboard.on('keyup_UP', (event) => {
       if (moveKeys['down'].isUp) {
         this.player.setVelocityY(0);
-        this.player.anims.stop(null, 1);
       }
+      if (allKeysAreUp()) { console.log('lol'); this.player.anims.stop(null, 1) }
     });
     this.input.keyboard.on('keyup_DOWN', (event) => {
       if (moveKeys['up'].isUp) {
         this.player.setVelocityY(0);
-        this.player.anims.stop(null, 1);
       }
+      if (allKeysAreUp()) { console.log('lol'); this.player.anims.stop(null, 1) }
     });
     this.input.keyboard.on('keyup_LEFT', (event) => {
       if (moveKeys['right'].isUp) {
         this.player.setVelocityX(0);
-        this.player.anims.stop(null, 1);
       }
+      if (allKeysAreUp()) { console.log('lol'); this.player.anims.stop(null, 1) }
     });
     this.input.keyboard.on('keyup_RIGHT', (event) => {
       if (moveKeys['left'].isUp) {
         this.player.setVelocityX(0);
-        this.player.anims.stop(null, 1);
       }
+      if (allKeysAreUp()) { console.log('lol'); this.player.anims.stop(null, 1) }
     });
 
   }
