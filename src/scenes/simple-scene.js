@@ -93,33 +93,47 @@ export class SimpleScene extends Phaser.Scene {
     // Enables movement of player with arrow keys
     this.input.keyboard.on('keydown_UP', (event) => {
       this.player.setVelocityY(-playerSpeed);
+      this.player.anims.play('walkingUp');
+
     });
     this.input.keyboard.on('keydown_DOWN', (event) => {
       this.player.setVelocityY(playerSpeed);
+      this.player.anims.play('walkingDown');
+
     });
     this.input.keyboard.on('keydown_LEFT', (event) => {
       this.player.setVelocityX(-playerSpeed);
+      this.player.anims.play('walkingLeft');
     });
     this.input.keyboard.on('keydown_RIGHT', (event) => {
       this.player.setVelocityX(playerSpeed);
+      this.player.anims.play('walkingRight');
     });
 
     // Stops player acceleration on uppress of WASD keys
     this.input.keyboard.on('keyup_UP', (event) => {
-      if (moveKeys['down'].isUp)
+      if (moveKeys['down'].isUp) {
         this.player.setVelocityY(0);
+        this.player.anims.stop(null, 1);
+      }
     });
     this.input.keyboard.on('keyup_DOWN', (event) => {
-      if (moveKeys['up'].isUp)
+      if (moveKeys['up'].isUp) {
         this.player.setVelocityY(0);
+        this.player.anims.stop(null, 1);
+      }
     });
     this.input.keyboard.on('keyup_LEFT', (event) => {
-      if (moveKeys['right'].isUp)
+      if (moveKeys['right'].isUp) {
         this.player.setVelocityX(0);
+        this.player.anims.stop(null, 1);
+      }
     });
     this.input.keyboard.on('keyup_RIGHT', (event) => {
-      if (moveKeys['left'].isUp)
+      if (moveKeys['left'].isUp) {
         this.player.setVelocityX(0);
+        this.player.anims.stop(null, 1);
+      }
     });
 
   }
@@ -153,8 +167,26 @@ export class SimpleScene extends Phaser.Scene {
       prefix: 'right/default/', suffix: '.png'
     });
     this.anims.create({ key: 'walkingRight', frames: walkingRightFrames, frameRate: 6, repeat: -1 });
-    this.player.anims.play('walkingRight');
 
+    var walkingLeftFrames = this.anims.generateFrameNames('healdaSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'left/default/', suffix: '.png'
+    });
+    this.anims.create({ key: 'walkingLeft', frames: walkingLeftFrames, frameRate: 6, repeat: -1 });
+
+    var walkingUpFrames = this.anims.generateFrameNames('healdaSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'up/default/', suffix: '.png'
+    });
+    this.anims.create({ key: 'walkingUp', frames: walkingUpFrames, frameRate: 6, repeat: -1 });
+
+    var walkingDownFrames = this.anims.generateFrameNames('healdaSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'down/default/', suffix: '.png'
+    });
+    this.anims.create({ key: 'walkingDown', frames: walkingDownFrames, frameRate: 6, repeat: -1 });
+
+    this.player.anims.play('walkingRight');
     this.player.setCollideWorldBounds(true);
   }
 }
