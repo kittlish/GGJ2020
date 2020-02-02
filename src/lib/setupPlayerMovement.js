@@ -7,8 +7,9 @@ export default function setupMovement (scene, player, walkingSounds) {
         'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
     });
 
+    // Normalize and scale the velocity so that player can't move faster along a diagonal
     const playerSpeed = 160;
-
+    player.body.velocity.normalize().scale(playerSpeed);
 
     // Enables movement of player with arrow keys
     scene.input.keyboard.on('keydown_UP', (event) => {

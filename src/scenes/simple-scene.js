@@ -45,16 +45,10 @@ export class SimpleScene extends Phaser.Scene {
         this.displayWinText();
       }
     });
-    this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   update (time,delta) {
-    const speed = 125;
     this.controls.update(delta);
-    // Horizontal movement
-
-    // Normalize and scale the velocity so that player can't move faster along a diagonal
-    this.player.body.velocity.normalize().scale(speed);
   }
     
   displayWinText() {
