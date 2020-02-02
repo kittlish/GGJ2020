@@ -74,7 +74,11 @@ export class SimpleScene extends Phaser.Scene {
     winningText.setShadow(2, 2, "#333333", 2, true, true);
     callText(winningText, 'Winner!');
 
+    this.player.healed = true;
+    this.backgroundMusic.stop();
     victoryTheme(this);
+
+    //DISABLECONTROLS HERE
   }
 
   setupMusic() {
