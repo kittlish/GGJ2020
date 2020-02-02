@@ -4,6 +4,7 @@ import configText from '../lib/configText';
 import displayInteractText from '../lib/displayInteractText';
 import coordinates from '../lib/coordinates';
 import drRedNoseCharacter from '../characters/DrRedNose';
+import playerCharacter from '../characters/player';
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -19,7 +20,6 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image("tiles", "assets/tilesets/pretty_boy.png");
     this.load.tilemapTiledJSON("map", "assets/tilesets/pretty_boy.json");
   }
-    
 
   create () {
     this.setupMusic();
@@ -170,73 +170,7 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   setupPlayer() {
-    this.player = this.physics.add.sprite(...coordinates(10, 17), 'playerBase');
-    this.player.setSize(10,15);
-    this.player.setOffset(0,30);
-    this.player.setScale(1.5);
-
-    var playerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'player/right/default/', suffix: '.png'
-    });
-    this.anims.create({ key: 'playerWalkingRight', frames: playerWalkingRightFrames, frameRate: 6, repeat: -1 });
-
-    var playerWalkingLeftFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'player/left/default/', suffix: '.png'
-    });
-    this.anims.create({ key: 'playerWalkingLeft', frames: playerWalkingLeftFrames, frameRate: 6, repeat: -1 });
-
-    var playerWalkingUpFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'player/up/default/', suffix: '.png'
-    });
-    this.anims.create({ key: 'playerWalkingUp', frames: playerWalkingUpFrames, frameRate: 6, repeat: -1 });
-
-    var playerWalkingDownFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'player/down/default/', suffix: '.png'
-    });
-    this.anims.create({ key: 'playerWalkingDown', frames: playerWalkingDownFrames, frameRate: 6, repeat: -1 });
-
-    // gray player
-    var grayPlayerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 6, zeroPad: 1,
-      prefix: 'player/right/gray/', suffix: '.png'
-    });
-    this.anims.create({ key: 'grayPlayerWalkingRight', frames: grayPlayerWalkingRightFrames, frameRate: 10, repeat: -1 });
-
-    var grayPlayerWalkingLeftFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 6, zeroPad: 1,
-      prefix: 'player/left/gray/', suffix: '.png'
-    });
-    this.anims.create({ key: 'grayPlayerWalkingLeft', frames: grayPlayerWalkingLeftFrames, frameRate: 10, repeat: -1 });
-
-    var grayPlayerWalkingUpFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 6, zeroPad: 1,
-      prefix: 'player/up/gray/', suffix: '.png'
-    });
-    this.anims.create({ key: 'grayPlayerWalkingUp', frames: grayPlayerWalkingUpFrames, frameRate: 10, repeat: -1 });
-
-    var grayPlayerWalkingDownFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 6, zeroPad: 1,
-      prefix: 'player/down/gray/', suffix: '.png'
-    });
-    this.anims.create({ key: 'grayPlayerWalkingDown', frames: grayPlayerWalkingDownFrames, frameRate: 10, repeat: -1 });
-
-    // this.anims.create({ key: 'blueBottom', frames: [{ key: 'allSprites', frame: 'level/Blue bottom.png'}] })
-    // this.anims.create({ key: 'playerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/default/right.png" }] })
-    // this.anims.create({ key: 'playerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/default/back.png" }] })
-    // this.anims.create({ key: 'playerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/default/left.png" }] })
-    // this.anims.create({ key: 'playerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/default/front.png" }] })
-    // this.anims.create({ key: 'grayPlayerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/gray/right.png" }] })
-    // this.anims.create({ key: 'grayPlayerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/gray/back.png" }] })
-    // this.anims.create({ key: 'grayPlayerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/gray/left.png" }] })
-    // this.anims.create({ key: 'grayPlayerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/gray/front.png" }] })
-
-    // this.player.anims.play('grayPlayerStandingDown');
-    this.player.setCollideWorldBounds(true);
-
+    this.player = playerCharacter(this, ...coordinates(10, 17));
     this.physics.add.collider(this.player, this.wallsLayer);
   }
 
