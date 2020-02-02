@@ -5,6 +5,8 @@ import displayInteractText from '../lib/displayInteractText';
 import coordinates from '../lib/coordinates';
 import drRedNoseCharacter from '../characters/DrRedNose';
 import playerCharacter from '../characters/player';
+import ghostCharacter from '../characters/ghost';
+import setupPlayerMovement from '../lib/setupPlayerMovement';
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -28,8 +30,15 @@ export class SimpleScene extends Phaser.Scene {
 
     this.letCameraPan();
     this.setupDialog();    
-    this.setupEnvironmentAndPlayer();
-    this.setupMovement();
+
+    this.ghost = ghostCharacter(this, ...coordinates(10, 15));
+    this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
+    this.player = playerCharacter(this, ...coordinates(10, 17));
+    this.winSquare = this.physics.add.sprite(...coordinates(23, 3), 'winSquare');
+
+    this.physics.add.collider(this.player, this.wallsLayer);
+
+    setupPlayerMovement(this, this.player, this.steps);
 
     this.input.keyboard.on('keydown_SPACE', (event) => {
       if (inRange(this.player, this.winSquare)) {
@@ -58,120 +67,12 @@ export class SimpleScene extends Phaser.Scene {
     spooky.play();
   }
 
-  setupMovement() {
-    // Creates object for input with arrow keys
-    const moveKeys = this.input.keyboard.addKeys({
-      'up': Phaser.Input.Keyboard.KeyCodes.UP,
-      'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
-      'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
-      'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
-    });
-
-    const playerSpeed = 160;   
-    
-
-    // Enables movement of player with arrow keys
-    this.input.keyboard.on('keydown_UP', (event) => {
-      this.player.setVelocityY(-playerSpeed);
-      this.player.anims.play('grayPlayerWalkingUp');
-      this.steps.play();
-    });
-    this.input.keyboard.on('keydown_DOWN', (event) => {
-      this.player.setVelocityY(playerSpeed);
-      this.player.anims.play('grayPlayerWalkingDown');
-      this.steps.play();
-    });
-    this.input.keyboard.on('keydown_LEFT', (event) => {
-      this.player.setVelocityX(-playerSpeed);
-      this.player.anims.play('grayPlayerWalkingLeft');
-      this.steps.play();
-    });
-    this.input.keyboard.on('keydown_RIGHT', (event) => {
-      this.player.setVelocityX(playerSpeed);
-      this.player.anims.play('grayPlayerWalkingRight');
-      this.steps.play();
-    });
-
-    const allKeysAreUp = function () { return moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp; }
-
-    // Stops player acceleration on uppress of WASD keys
-    this.input.keyboard.on('keyup_UP', (event) => {
-      if (moveKeys['down'].isUp) {
-        this.player.setVelocityY(0);
-      }
-      if (allKeysAreUp()) {
-        this.player.anims.stop(null, 1)
-        this.steps.pause();
-      }
-    });
-    this.input.keyboard.on('keyup_DOWN', (event) => {
-      if (moveKeys['up'].isUp) {
-        this.player.setVelocityY(0);
-      }
-      if (allKeysAreUp()) {
-        this.player.anims.stop(null, 1)
-        this.steps.pause();
-      }
-    });
-    this.input.keyboard.on('keyup_LEFT', (event) => {
-      if (moveKeys['right'].isUp) {
-        this.player.setVelocityX(0);
-      }
-      if (allKeysAreUp()) {
-        this.player.anims.stop(null, 1)
-        this.steps.pause();
-      }
-    });
-    this.input.keyboard.on('keyup_RIGHT', (event) => {
-      if (moveKeys['left'].isUp) {
-        this.player.setVelocityX(0);
-      }
-      if (allKeysAreUp()) {
-        this.player.anims.stop(null, 1)
-        this.steps.pause();
-      }
-    });
-
-  }
-
   setupMusic() {
     this.backgroundMusic = this.sound.add('main_background_music');
     this.steps = this.sound.add('steps');
     this.spooky = this.sound.add('spooky');
 
 //     this.backgroundMusic.play();
-  }
-
-  setupEnvironmentAndPlayer() {
-    //Create winSquare physics object
-    this.winSquare = this.physics.add.sprite(...coordinates(23,3), 'winSquare');
-
-    this.setupGhost();
-    this.setupDrRedNose();
-    this.setupPlayer();
-    this.physics.add.collider(this.player, this.wallsLayer);    
-  }
-
-  setupGhost() {
-    this.ghost1 = this.physics.add.sprite(500, 300);
- 
-    var ghostWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'npc/ghosties/', suffix: '.png'
-    });
-    this.anims.create({ key: 'ghostWalkingRight', frames: ghostWalkingRightFrames, frameRate: 6, repeat: -1 });
-    
-    this.ghost1.anims.play('ghostWalkingRight');
-    this.ghost1.setScale(2, 2);
-  }
-
-  setupDrRedNose() {
-    this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
-  }
-
-  setupPlayer() {
-    this.player = playerCharacter(this, ...coordinates(10, 17));
-    this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   displayHelpText() {
