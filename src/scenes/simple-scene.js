@@ -91,6 +91,7 @@ export class SimpleScene extends Phaser.Scene {
 
     //disable winning
     this.player.hasWon = true;
+    this.spotlight.visible = false;
   }
 
   setupMusic() {
