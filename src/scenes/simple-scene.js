@@ -7,6 +7,7 @@ import drRedNoseCharacter from '../characters/DrRedNose';
 import playerCharacter from '../characters/player';
 import ghostCharacter from '../characters/ghost';
 import setupPlayerMovement from '../lib/setupPlayerMovement';
+import setupDialog from '../lib/setupDialog';
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -28,7 +29,7 @@ export class SimpleScene extends Phaser.Scene {
     this.displayHelpText();
     this.setupMap();
 
-    this.setupDialog();    
+    //this.setupDialog();    
 
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
     this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
@@ -49,6 +50,8 @@ export class SimpleScene extends Phaser.Scene {
         this.displayWinText();
       }
     });
+
+    setupDialog(scene);
   }
 
   update (time,delta) {
