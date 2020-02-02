@@ -1,6 +1,6 @@
 import inRange from '../lib/inRange';
 import callText from '../lib/callText.js';
-import configText from '../lib/configText'
+import configText from '../lib/configText';
 
 export class SimpleScene extends Phaser.Scene {
 
