@@ -22,16 +22,10 @@ export class SimpleScene extends Phaser.Scene {
   create () {
     this.setupMusic();
     this.displayHelpText();
-    this.map = this.make.tilemap({ key: "map" });
-
-    const tileset = this.map.addTilesetImage('Untitled-4', 'tiles');
-    const floorLayer = this.map.createStaticLayer("Floors", tileset, 0, 0);
-    const wallsLayer = this.map.createStaticLayer("Walls", tileset, 0, 0);
-    wallsLayer.setCollisionByProperty({ collides: true });
-    wallsLayer.setCollisionBetween(12, 44);
+    this.setupMap();
 
     const debugGraphics = this.add.graphics().setAlpha(0.75);
-    wallsLayer.renderDebug(debugGraphics, {
+    this.wallsLayer.renderDebug(debugGraphics, {
       tileColor: null, // Color of non-colliding tiles
       collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
       faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
@@ -47,7 +41,7 @@ export class SimpleScene extends Phaser.Scene {
         this.displayWinText();
       }
     });
-    this.physics.add.collider(this.player, wallsLayer);
+    this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   update (time,delta) {
@@ -359,5 +353,15 @@ export class SimpleScene extends Phaser.Scene {
 
     // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
     camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+  }
+
+  setupMap() {
+    this.map = this.make.tilemap({ key: "map" });
+
+    const tileset = this.map.addTilesetImage('Untitled-4', 'tiles');
+    const floorLayer = this.map.createStaticLayer("Floors", tileset, 0, 0);
+    this.wallsLayer = this.map.createStaticLayer("Walls", tileset, 0, 0);
+    this.wallsLayer.setCollisionByProperty({ collides: true });
+    this.wallsLayer.setCollisionBetween(12, 44);
   }
 }
