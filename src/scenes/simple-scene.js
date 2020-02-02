@@ -19,12 +19,12 @@ export class SimpleScene extends Phaser.Scene {
     this.setupMovement();
       
     var drRColor = '#800000';
-    var healaColor = '#000066';
+    var healdaColor = '#000066';
       
     var textContainer = this.add.container(350, 250);
     var mainText = this.add.text(0,0,'');
     var drRText = this.add.text(0,10,'');
-    var healdaText = this.addtext(0, 20, '');
+    var healdaText = this.add.text(0, 20, '');
       
     mainText.setStroke('#000', 8);
     mainText.setShadow(2, 2, "#333333", 2, true, true);
@@ -32,8 +32,8 @@ export class SimpleScene extends Phaser.Scene {
     drRText.setStroke('#000', 8);
     healdaText.setStroke('#000', 8);
       
-    drRText.setShadow(2, 2, , true, true);
-    healdaText.setShadow(2, 2, , true, true);  
+    drRText.setShadow(2, 2, drRColor, true, true);
+    healdaText.setShadow(2, 2, healdaColor, true, true);  
       
     textContainer.add(mainText);
       
