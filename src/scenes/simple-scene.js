@@ -25,6 +25,7 @@ export class SimpleScene extends Phaser.Scene {
 
   create () {
     this.setupMusic();
+    this.displayHelpText();
     const map = this.make.tilemap({ key: "map" });
 
     const tileset = map.addTilesetImage('Untitled-4', 'tiles');
@@ -58,17 +59,6 @@ export class SimpleScene extends Phaser.Scene {
     // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-    // Help text that has a "fixed" position on the screen
-    this.add
-      .text(20, 16, "Arrow keys to scroll", {
-        font: "18px monospace",
-        fill: "#ffffff",
-        padding: { x: 20, y: 10 },
-        backgroundColor: "#000000"
-      })
-      .setScrollFactor(0);
-    this.setupEnvironmentAndPlayer();
-    this.setupMovement();
       
     var drRColor = '#800000';
     var healdaColor = '#000066';
@@ -355,5 +345,19 @@ export class SimpleScene extends Phaser.Scene {
 
     this.player.anims.play('grayPlayerStandingDown');
     this.player.setCollideWorldBounds(true);
+  }
+
+  displayHelpText() {
+    // Help text that has a "fixed" position on the screen
+    this.add
+      .text(20, 16, "Arrow keys to scroll", {
+        font: "18px monospace",
+        fill: "#ffffff",
+        padding: { x: 20, y: 10 },
+        backgroundColor: "#000000"
+      })
+      .setScrollFactor(0);
+    this.setupEnvironmentAndPlayer();
+    this.setupMovement();
   }
 }
