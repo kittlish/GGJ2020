@@ -51,7 +51,7 @@ export class SimpleScene extends Phaser.Scene {
       }
     });
 
-    setupDialog(scene);
+    setupDialog(this);
   }
 
   update (time,delta) {
