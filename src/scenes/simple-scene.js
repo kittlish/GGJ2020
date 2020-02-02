@@ -2,6 +2,11 @@ import inRange from '../lib/inRange';
 import callText from '../lib/callText.js';
 import configText from '../lib/configText';
 import displayInteractText from '../lib/displayInteractText';
+import coordinates from '../lib/coordinates';
+import drRedNoseCharacter from '../characters/DrRedNose';
+import playerCharacter from '../characters/player';
+import ghostCharacter from '../characters/ghost';
+import setupPlayerMovement from '../lib/setupPlayerMovement';
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -17,7 +22,6 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image("tiles", "assets/tilesets/pretty_boy.png");
     this.load.tilemapTiledJSON("map", "assets/tilesets/pretty_boy.json");
   }
-    
 
   create () {
     this.setupMusic();
@@ -26,8 +30,15 @@ export class SimpleScene extends Phaser.Scene {
 
     this.letCameraPan();
     this.setupDialog();    
-    this.setupEnvironmentAndPlayer();
-    this.setupMovement();
+
+    this.ghost = ghostCharacter(this, ...coordinates(10, 15));
+    this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
+    this.player = playerCharacter(this, ...coordinates(10, 17));
+    this.winSquare = this.physics.add.sprite(...coordinates(23, 3), 'winSquare');
+
+    this.physics.add.collider(this.player, this.wallsLayer);
+
+    setupPlayerMovement(this, this.player, this.steps);
 
     this.input.keyboard.on('keydown_SPACE', (event) => {
       if (inRange(this.player, this.winSquare)) {
@@ -56,196 +67,12 @@ export class SimpleScene extends Phaser.Scene {
     spooky.play();
   }
 
-  setupMovement() {
-    // Creates object for input with arrow keys
-    const moveKeys = this.input.keyboard.addKeys({
-      'up': Phaser.Input.Keyboard.KeyCodes.UP,
-      'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
-      'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
-      'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
-    });
-
-    const playerSpeed = 160;   
-    
-
-    // Enables movement of player with arrow keys
-    this.input.keyboard.on('keydown_UP', (event) => {
-      this.player.setVelocityY(-playerSpeed);
-      this.player.anims.play('grayPlayerWalkingUp');
-      this.steps.play();
-    });
-    this.input.keyboard.on('keydown_DOWN', (event) => {
-      this.player.setVelocityY(playerSpeed);
-      this.player.anims.play('grayPlayerWalkingDown');
-      this.steps.play();
-    });
-    this.input.keyboard.on('keydown_LEFT', (event) => {
-      this.player.setVelocityX(-playerSpeed);
-      this.player.anims.play('grayPlayerWalkingLeft');
-      this.steps.play();
-    });
-    this.input.keyboard.on('keydown_RIGHT', (event) => {
-      this.player.setVelocityX(playerSpeed);
-      this.player.anims.play('grayPlayerWalkingRight');
-      this.steps.play();
-    });
-
-    const allKeysAreUp = function () { return moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp; }
-
-    // Stops player acceleration on uppress of WASD keys
-    this.input.keyboard.on('keyup_UP', (event) => {
-      if (moveKeys['down'].isUp) {
-        this.player.setVelocityY(0);
-      }
-      if (allKeysAreUp()) {
-        this.player.anims.stop(null, 1)
-        this.steps.pause();
-      }
-    });
-    this.input.keyboard.on('keyup_DOWN', (event) => {
-      if (moveKeys['up'].isUp) {
-        this.player.setVelocityY(0);
-      }
-      if (allKeysAreUp()) {
-        this.player.anims.stop(null, 1)
-        this.steps.pause();
-      }
-    });
-    this.input.keyboard.on('keyup_LEFT', (event) => {
-      if (moveKeys['right'].isUp) {
-        this.player.setVelocityX(0);
-      }
-      if (allKeysAreUp()) {
-        this.player.anims.stop(null, 1)
-        this.steps.pause();
-      }
-    });
-    this.input.keyboard.on('keyup_RIGHT', (event) => {
-      if (moveKeys['left'].isUp) {
-        this.player.setVelocityX(0);
-      }
-      if (allKeysAreUp()) {
-        this.player.anims.stop(null, 1)
-        this.steps.pause();
-      }
-    });
-
-  }
-
   setupMusic() {
     this.backgroundMusic = this.sound.add('main_background_music');
     this.steps = this.sound.add('steps');
     this.spooky = this.sound.add('spooky');
 
 //     this.backgroundMusic.play();
-  }
-
-  setupEnvironmentAndPlayer() {
-    //Create winSquare physics object
-    this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
-
-    this.setupGhost();
-    this.setupDrRedNose();
-    this.setupPlayer();
-    this.physics.add.collider(this.player, this.wallsLayer);    
-  }
-
-  setupGhost() {
-    this.ghost1 = this.physics.add.sprite(500, 300);
- 
-    var ghostWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'npc/ghosties/', suffix: '.png'
-    });
-    this.anims.create({ key: 'ghostWalkingRight', frames: ghostWalkingRightFrames, frameRate: 6, repeat: -1 });
-    
-    this.ghost1.anims.play('ghostWalkingRight');
-    this.ghost1.setScale(2, 2);
-  }
-
-  setupDrRedNose() {
-    this.drRedNose = this.physics.add.sprite(200, 500);
- 
-    var drRedNoseFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'npc/dr-red-nose/', suffix: '.png'
-    });
-    this.anims.create({ key: 'drRedNoseStanding', frames: drRedNoseFrames, frameRate: 6, repeat: -1 });
-    
-    this.drRedNose.anims.play('drRedNoseStanding');
-    this.drRedNose.setScale(2, 2);
-
-  }
-
-  setupPlayer() {
-    this.player = this.physics.add.sprite(320, 200, 'playerBase');
-    this.player.setSize(10,15);
-    this.player.setOffset(0,30);
-    this.player.setScale(1.5);
-
-    var playerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'player/right/default/', suffix: '.png'
-    });
-    this.anims.create({ key: 'playerWalkingRight', frames: playerWalkingRightFrames, frameRate: 6, repeat: -1 });
-
-    var playerWalkingLeftFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'player/left/default/', suffix: '.png'
-    });
-    this.anims.create({ key: 'playerWalkingLeft', frames: playerWalkingLeftFrames, frameRate: 6, repeat: -1 });
-
-    var playerWalkingUpFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'player/up/default/', suffix: '.png'
-    });
-    this.anims.create({ key: 'playerWalkingUp', frames: playerWalkingUpFrames, frameRate: 6, repeat: -1 });
-
-    var playerWalkingDownFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
-      prefix: 'player/down/default/', suffix: '.png'
-    });
-    this.anims.create({ key: 'playerWalkingDown', frames: playerWalkingDownFrames, frameRate: 6, repeat: -1 });
-
-    // gray player
-    var grayPlayerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 6, zeroPad: 1,
-      prefix: 'player/right/gray/', suffix: '.png'
-    });
-    this.anims.create({ key: 'grayPlayerWalkingRight', frames: grayPlayerWalkingRightFrames, frameRate: 10, repeat: -1 });
-
-    var grayPlayerWalkingLeftFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 6, zeroPad: 1,
-      prefix: 'player/left/gray/', suffix: '.png'
-    });
-    this.anims.create({ key: 'grayPlayerWalkingLeft', frames: grayPlayerWalkingLeftFrames, frameRate: 10, repeat: -1 });
-
-    var grayPlayerWalkingUpFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 6, zeroPad: 1,
-      prefix: 'player/up/gray/', suffix: '.png'
-    });
-    this.anims.create({ key: 'grayPlayerWalkingUp', frames: grayPlayerWalkingUpFrames, frameRate: 10, repeat: -1 });
-
-    var grayPlayerWalkingDownFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 6, zeroPad: 1,
-      prefix: 'player/down/gray/', suffix: '.png'
-    });
-    this.anims.create({ key: 'grayPlayerWalkingDown', frames: grayPlayerWalkingDownFrames, frameRate: 10, repeat: -1 });
-
-    // this.anims.create({ key: 'blueBottom', frames: [{ key: 'allSprites', frame: 'level/Blue bottom.png'}] })
-    // this.anims.create({ key: 'playerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/default/right.png" }] })
-    // this.anims.create({ key: 'playerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/default/back.png" }] })
-    // this.anims.create({ key: 'playerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/default/left.png" }] })
-    // this.anims.create({ key: 'playerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/default/front.png" }] })
-    // this.anims.create({ key: 'grayPlayerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/gray/right.png" }] })
-    // this.anims.create({ key: 'grayPlayerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/gray/back.png" }] })
-    // this.anims.create({ key: 'grayPlayerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/gray/left.png" }] })
-    // this.anims.create({ key: 'grayPlayerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/gray/front.png" }] })
-
-    // this.player.anims.play('grayPlayerStandingDown');
-    this.player.setCollideWorldBounds(true);
-
-    this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   displayHelpText() {
