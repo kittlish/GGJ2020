@@ -26,9 +26,10 @@ export class SimpleScene extends Phaser.Scene {
     var healdaColor = '#000066';
       
     var textContainer = this.add.container(150, 250);
-    var mainText = configText(this.add.text(0,0,''), textContainer, '#000', '#333333');   
-    var drRText = configText(this.add.text(0,20,''), textContainer, '#000', drRColor);
-    var healdaText = configText(this.add.text(0, 40, ''), textContainer, '#000', healdaColor);
+    var dialogueContainer = this.add.container(50, 250);
+    var mainText = configText(this.add.text(0,0,'', {align: 'center'}), textContainer, '#000', '#333333');   
+    var drRText = configText(this.add.text(0,20,'', {align: 'center'}), dialogueContainer, '#000', drRColor);
+    var healdaText = configText(this.add.text(0, 40, '', {align: 'center'}), dialogueContainer, '#000', healdaColor);
      
     var startingLine = 0;
     var myline;
@@ -40,9 +41,14 @@ export class SimpleScene extends Phaser.Scene {
         {speaker: 'Healda', line: 'bee boop'},
         {speaker: 'Dr. R', line: 'do you even understand me?'},
         {speaker: 'Healda', line: '[nods]'},
-        {speaker: 'Dr. R', line: 'Oh you don\'t speak do you? Well never mind that, you must help me! That would be the nice thing to do and you wouldn\'t happen to be one of the naughty ones, would you? You don’t seem the naughty type...'},
+        {speaker: 'Dr. R', line: 'Oh you don\'t speak do you?'} ,
+        {speaker: 'Dr. R', line: 'Well never mind that, you must help me!'}, 
+        {speaker: 'Dr. R', line: 'That would be the nice thing to do...'},
+        {speaker: 'Dr. R', line: '...and you wouldn\'t happen to be one of the naughty ones, would you?'}
+        {speaker: 'Dr. R', line: 'You don’t seem the naughty type...'},
         {speaker: 'Healda', line: 'o.o'},
-        {speaker: 'Dr. R', line: 'Anywho, my arch nemesis Dr. Blitzen von Vixen has stolen my formula for my medicine! I am deathly ill and I need that cure!'},
+        {speaker: 'Dr. R', line: 'Anywho, my arch nemesis Dr. Blitzen von Vixen has stolen my formula for my medicine!'}
+        {speaker: 'Dr. R', line: 'I am deathly ill and I need that cure!'},
         {speaker: 'Dr. R', line: 'Could you please explore this Omega Building and find the formula?'},
         {speaker: 'Dr. R', line: 'Also… there may or may not be evil  deadly robots lurking in here…'}
                 
