@@ -31,7 +31,7 @@ export class SimpleScene extends Phaser.Scene {
     this.setupMap();
 
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
-    this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
+    this.drRedNose = drRedNoseCharacter(this, ...coordinates(9.1, 17));
     this.player = playerCharacter(this, ...coordinates(10, 17));
     this.winSquare = this.physics.add.sprite(...coordinates(23, 3), 'winSquare');
 
