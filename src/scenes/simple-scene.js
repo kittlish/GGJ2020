@@ -10,6 +10,7 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image('player', 'assets/Healda/standing/default/right.png');
     this.load.image('wall', 'assets/wall.png');
     this.load.audio('main_background_music', ['assets/game jam music draft 1.0.mp3']);
+    this.load.audio('spooky', ['assets/spooookieeee.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
     this.load.multiatlas('healdaSprites', 'assets/Healda/healda.json', 'assets/Healda');
   }
@@ -78,6 +79,9 @@ export class SimpleScene extends Phaser.Scene {
     var winningText = this.add.text(10, 10, 'Winner!');
     winningText.setStroke('#000', 8);
     winningText.setShadow(2, 2, "#333333", 2, true, true);
+
+    const spooky = this.sound.add('spooky');
+    spooky.play();
   }
 
   setupMovement() {
