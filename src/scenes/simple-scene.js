@@ -305,7 +305,7 @@ export class SimpleScene extends Phaser.Scene {
     var currentTextObj;
 
 
-    this.input.keyboard.on('keydown_G', (event) => {
+    this.input.keyboard.on('keydown_SPACE', (event) => {
       if(inRange(this.player, this.drRedNose)){
         if (startingLine > 0) {
           drRText.setText('');
