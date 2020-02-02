@@ -28,12 +28,12 @@ export class SimpleScene extends Phaser.Scene {
       
     var textContainer = this.add.container(150, 250);
     var dialogueContainer = this.add.container(50, 250);
-    var helpContainer = this.add.container(10,10);
+    
 
     var mainText = configText(this.add.text(0,0,'', {align: 'center'}), textContainer, '#000', '#333333');   
     var drRText = configText(this.add.text(0,20,'', {align: 'center'}), dialogueContainer, '#000', drRColor);
     var healdaText = configText(this.add.text(0, 40, '', {align: 'center'}), dialogueContainer, '#000', healdaColor);
-    var helpText = configText(this.add.text(0,0,''), helpContainer, '#000', '#333333');
+    
     //var winningText = configText(this.add.text(10, 10, 'Winner!'), textContainer, '#000', '#333333');
      
     var startingLine = 0;
@@ -94,9 +94,15 @@ export class SimpleScene extends Phaser.Scene {
     });
   }
 
-  update() {
-    if(inRange(this.player, this.winSquare)){
+  
 
+  update() {
+
+    var helpContainer = this.add.container(390,10);
+    var helpText = configText(this.add.text(0,0,''), helpContainer, '#000', '#333333');
+    callText(helpText, '');
+    if(inRange(this.player, this.winSquare)){      
+      callText(helpText, 'Press SPACE to interact.')
     }
 
   }
@@ -105,7 +111,7 @@ export class SimpleScene extends Phaser.Scene {
     var winningText = this.add.text(10, 10, 'Winner!');
     winningText.setStroke('#000', 8);
     winningText.setShadow(2, 2, "#333333", 2, true, true);
-    //callText(winningText, 'Winner!');
+    callText(winningText, 'Winner!');
 
     const spooky = this.sound.add('spooky');
     spooky.play();
@@ -191,6 +197,7 @@ export class SimpleScene extends Phaser.Scene {
     this.setupGhost();
     this.setupPlayer();
     this.physics.add.collider(this.player, walls);
+    
   }
 
   setupGhost() {
