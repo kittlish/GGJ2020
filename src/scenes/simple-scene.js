@@ -71,10 +71,7 @@ export class SimpleScene extends Phaser.Scene {
     this.spotlight.y = this.player.y;
 
     this.cameras.main.centerOn(this.player.x, this.player.y);
-
-    if (this.ghost.canMove) {
-      updateGhostMovement(this.ghost, this.player);
-    }
+    updateGhostMovement(this.ghost, this.player);
   }
 
   winner() {
