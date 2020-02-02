@@ -19,8 +19,8 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image('winSquare', 'assets/npc.png');
     this.load.image('playerBase', 'assets/player_base.png');
     this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
-    this.load.image("tiles", "assets/tilesets/pretty_boy.png");
-    this.load.tilemapTiledJSON("map", "assets/tilesets/pretty_boy.json");
+    this.load.image("allSpritesImage", "assets/ggj2020.png");
+    this.load.tilemapTiledJSON("chadMap", "assets/Chad.json");
   }
 
   create () {
@@ -157,10 +157,10 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   setupMap() {
-    this.map = this.make.tilemap({ key: "map" });
+    this.map = this.make.tilemap({ key: "chadMap" });
 
-    const tileset = this.map.addTilesetImage('Untitled-4', 'tiles');
-    const floorLayer = this.map.createStaticLayer("Floors", tileset, 0, 0);
+    const tileset = this.map.addTilesetImage('screen', 'allSpritesImage');
+    const floorLayer = this.map.createStaticLayer("Floor", tileset, 0, 0);
     this.wallsLayer = this.map.createStaticLayer("Walls", tileset, 0, 0);
     this.wallsLayer.setCollisionByProperty({ collides: true });
   }
