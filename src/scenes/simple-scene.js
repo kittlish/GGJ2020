@@ -116,21 +116,21 @@ export class SimpleScene extends Phaser.Scene {
     // Enables movement of player with arrow keys
     this.input.keyboard.on('keydown_UP', (event) => {
       this.player.setVelocityY(-playerSpeed);
-      this.player.anims.play('playerWalkingUp');
+      this.player.anims.play('grayPlayerWalkingUp');
 
     });
     this.input.keyboard.on('keydown_DOWN', (event) => {
       this.player.setVelocityY(playerSpeed);
-      this.player.anims.play('playerWalkingDown');
+      this.player.anims.play('grayPlayerWalkingDown');
 
     });
     this.input.keyboard.on('keydown_LEFT', (event) => {
       this.player.setVelocityX(-playerSpeed);
-      this.player.anims.play('playerWalkingLeft');
+      this.player.anims.play('grayPlayerWalkingLeft');
     });
     this.input.keyboard.on('keydown_RIGHT', (event) => {
       this.player.setVelocityX(playerSpeed);
-      this.player.anims.play('playerWalkingRight');
+      this.player.anims.play('grayPlayerWalkingRight');
     });
 
     const allKeysAreUp = function () { return moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp; }
@@ -253,7 +253,7 @@ export class SimpleScene extends Phaser.Scene {
     this.anims.create({ key: 'grayPlayerWalkingLeft', frames: grayPlayerWalkingLeftFrames, frameRate: 6, repeat: -1 });
 
     var grayPlayerWalkingUpFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
+      start: 1, end: 8, zeroPad: 1,
       prefix: 'player/up/gray/', suffix: '.png'
     });
     this.anims.create({ key: 'grayPlayerWalkingUp', frames: grayPlayerWalkingUpFrames, frameRate: 6, repeat: -1 });
