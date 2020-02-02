@@ -72,7 +72,7 @@ export class SimpleScene extends Phaser.Scene {
 
     this.cameras.main.centerOn(this.player.x, this.player.y);
 
-    if (this.drRedNose.doneTalking) {
+    if (this.ghost.canMove) {
       updateGhostMovement(this.ghost, this.player);
     }
   }
@@ -92,6 +92,7 @@ export class SimpleScene extends Phaser.Scene {
     //disable winning
     this.player.hasWon = true;
     this.spotlight.visible = false;
+    this.ghost.canMove = false;
   }
 
   setupMusic() {

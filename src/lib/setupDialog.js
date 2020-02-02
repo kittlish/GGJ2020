@@ -91,7 +91,7 @@ export default function setupDialog(scene){
         startingLine = (startingLine + 1) % (lines.length + 1);
         if (startingLine == lines.length) {
           setupPlayerMovement(scene, scene.player, scene.steps);
-          scene.drRedNose.doneTalking = true;
+          scene.ghost.canMove = true;
           displayHelpText(scene);
         }
       }else{
