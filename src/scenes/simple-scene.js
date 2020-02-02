@@ -177,9 +177,9 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   setupPlayer() {
-    //Player Object
     this.player = this.physics.add.sprite(320, 200, 'player');
-    this.player.setScale(2, 2);
+    this.player.setSize(10,10);
+    this.player.setScale(1.5, 1.5);
 
     var playerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
       start: 1, end: 2, zeroPad: 1,
