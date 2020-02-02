@@ -21,7 +21,7 @@ export class SimpleScene extends Phaser.Scene {
     this.load.image('winSquare', 'assets/npc.png');
     this.load.image('playerBase', 'assets/player_base.png');
     this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
-    this.load.image("coyMapTilesImage", "assets/map-tiles.png");
+    this.load.image("coyMapTilesImage", "assets/coy-map-tiles.png");
     this.load.tilemapTiledJSON("omegaBuilding", "assets/Omega Building.json");
   }
 
