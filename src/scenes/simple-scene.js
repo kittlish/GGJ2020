@@ -18,7 +18,7 @@ export class SimpleScene extends Phaser.Scene {
     this.load.audio('victory_music', ['assets/the little robot that won.ogg']);
     this.load.audio('steps', ['assets/Steps.mp3']);
     this.load.audio('spooky', ['assets/spooookieeee.mp3']);
-    this.load.image('winSquare', 'assets/npc.png');
+    this.load.image('winSquare', 'assets/script.png');
     this.load.image('playerBase', 'assets/player_base.png');
     this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
     this.load.image("coyMapTilesImage", "assets/coy-map-tiles.png");
@@ -33,7 +33,7 @@ export class SimpleScene extends Phaser.Scene {
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
     this.drRedNose = drRedNoseCharacter(this, ...coordinates(9, 18));
     this.player = playerCharacter(this, ...coordinates(9, 19));
-    this.winSquare = this.physics.add.sprite(...coordinates(23.5, 4.5));
+    this.winSquare = this.physics.add.sprite(...coordinates(23.5, 4.5), 'winSquare');
 
     //The things the player can interact with in the game.  When the player is nearby, they'll be prompted with help text.
     var interactables = [this.drRedNose, this.winSquare];
@@ -43,7 +43,7 @@ export class SimpleScene extends Phaser.Scene {
       }, null, true);
     }
 
-    
+
 
     // set up interactions between things
     this.physics.add.collider(this.player, this.wallsLayer);
