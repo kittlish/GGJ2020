@@ -72,6 +72,14 @@ export class SimpleScene extends Phaser.Scene {
 
     this.cameras.main.centerOn(this.player.x, this.player.y);
     updateGhostMovement(this.ghost, this.player);
+    if (inRange(this.player, this.ghost, 80)) {
+      if (!this.spooky.isPlaying) {
+        this.spooky.play();
+      }
+      this.player.healed = false;
+    } else {
+      this.player.healed = true;
+    }
   }
 
   winner() {
