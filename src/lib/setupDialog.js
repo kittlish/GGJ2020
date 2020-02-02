@@ -37,7 +37,7 @@ export default function setupDialog(scene){
     var myline;
 
     var lines = [
-      { speaker: 'Dr. R', line: 'Dr. Rednose: Hello-ho-ho-ho you, over there! Please, help me! (space to continue)' },
+      { speaker: 'Dr. R', line: 'Dr. Rednose: Hello-ho-ho-ho you, over there! Please, help me! (press z to continue)' },
       { speaker: 'Healda', line: 'Healda: o.O ...' },
       { speaker: 'Dr. R', line: 'well?' },
       { speaker: 'Healda', line: 'bee boop' },
@@ -71,7 +71,7 @@ export default function setupDialog(scene){
       callText(healdaText, trimLine(myline.line));
     }
     startingLine = (startingLine + 1) % (lines.length + 1);
-    scene.input.keyboard.on('keydown_SPACE', (event) => {
+    scene.input.keyboard.on('keydown_Z', (event) => {
       if(inRange(scene.player, scene.drRedNose)){
         if (startingLine > 0) {
           drRText.setText('');

@@ -57,7 +57,7 @@ export class SimpleScene extends Phaser.Scene {
     // this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
 
-    this.input.keyboard.on('keydown_SPACE', (event) => {
+    this.input.keyboard.on('keydown_Z', (event) => {
       if (inRange(this.player, this.winSquare) && !this.player.hasWon) {
         this.winner();
       }
