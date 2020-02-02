@@ -3,8 +3,8 @@ import 'phaser';
 import { SimpleScene } from './scenes/simple-scene';
 const gameConfig = {
   type: Phaser.AUTO,
-  width: 25 * 32,
-  height: 20 * 32,
+  width: 27 * 32,
+  height: 21 * 32,
   parent: "game-container",
   pixelArt: true,
   physics: {
