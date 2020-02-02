@@ -97,7 +97,7 @@ export class SimpleScene extends Phaser.Scene {
     this.steps = this.sound.add('steps');
     this.spooky = this.sound.add('spooky');
 
-    // this.backgroundMusic.play({loop: true});
+    this.backgroundMusic.play({loop: true});
   }
 
 
