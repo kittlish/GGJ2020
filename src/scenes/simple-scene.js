@@ -1,5 +1,6 @@
 import inRange from '../lib/inRange';
 import callText from '../lib/callText.js';
+//import newLine from '../lib/newLine';
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -18,30 +19,51 @@ export class SimpleScene extends Phaser.Scene {
     this.setupMovement();
       
     var drRColor = '#800000';
-    var healaColor = '#000066';
+    var healdaColor = '#000066';
       
     var textContainer = this.add.container(350, 250);
     var mainText = this.add.text(0,0,'');
     var drRText = this.add.text(0,10,'');
-    var healdaText = this.addtext(0, 20, '');
+    var healdaText = this.add.text(0, 20, '');
       
     mainText.setStroke('#000', 8);
     mainText.setShadow(2, 2, "#333333", 2, true, true);
       
     drRText.setStroke('#000', 8);
-    healdaText.setStroke('#000', 8);
+    drRText.setShadow(2, 2, drRColor, true, true);
       
-    drRText.setShadow(2, 2, , true, true);
-    healdaText.setShadow(2, 2, , true, true);  
+    healdaText.setStroke('#000', 8);   
+    healdaText.setShadow(2, 2, healdaColor, true, true);  
       
     textContainer.add(mainText);
+    textContainer.add(drRText);
+    textContainer.add(healdaText);
+      
+    var startingLine = 0;
+    var myline;
+      
+    var lines = [
+        {speaker: 'Dr. R', line: 'Hello-ho-ho-ho you, over there! Please, help me!'},
+        {speaker: 'Healda', line:  'o.O ...'},
+        {speaker: 'Dr. R', line: 'well?'},
+        {speaker: 'Healda', line: 'bee boop'}
+    ]
       
     var helloText = 'Welcome to our game!';
       
     callText(mainText, helloText, 2000); 
       
     this.input.keyboard.on('keydown_G', (event) => {
-        callText(mainText, 'You pressed G!', 1000);
+        if(startingLine < lines.length){
+            myline = lines[startingLine];
+            if(myline.speaker == 'Dr. R'){
+                callText(drRText, myline.line, 2000);
+            }
+            if(line.speaker == 'Healda'){
+                callText(healdaText, myline.line, 2000);
+            }
+            startingLine++;
+        }
     });
     
     this.input.keyboard.on('keydown_SPACE', (event) => {
