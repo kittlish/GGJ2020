@@ -55,7 +55,7 @@ export class SimpleScene extends Phaser.Scene {
 
     this.input.keyboard.on('keydown_SPACE', (event) => {
       if (inRange(this.player, this.winSquare)) {
-        this.displayWinText();
+        this.winner();
       }
     });
 
@@ -67,13 +67,15 @@ export class SimpleScene extends Phaser.Scene {
     this.cameras.main.centerOn(this.player.x, this.player.y)
   }
 
-  displayWinText() {
+  winner() {
     var winningText = this.add.text(700, 100, 'Winner!');
     winningText.setStroke('#000', 8);
     winningText.setShadow(2, 2, "#333333", 2, true, true);
     callText(winningText, 'Winner!');
 
     this.player.healed = true;
+    this.player.anims.play('playerWalkingDown');
+    this.player.anims.stop();
     this.backgroundMusic.stop();
     victoryTheme(this);
 

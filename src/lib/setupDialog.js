@@ -56,7 +56,7 @@ export default function setupDialog(scene){
 
     ]
 
-    var helloText = 'Welcome to our game!';
+    var helloText = '';
 
     callText(mainText, helloText);
     setTimeout(() => { callText(mainText, '') }, 2000);
