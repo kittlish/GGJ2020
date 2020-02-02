@@ -23,16 +23,19 @@ export class SimpleScene extends Phaser.Scene {
     this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
     this.load.image("coyMapTilesImage", "assets/coy-map-tiles.png");
     this.load.tilemapTiledJSON("omegaBuilding", "assets/Omega Building.json");
+    this.load.image('spotlight', 'assets/spotlight.png')
   }
 
   create () {
     this.setupMusic();
     this.setupMap();
 
-    this.ghost = ghostCharacter(this, ...coordinates(10, 15));
+    this.winSquare = this.physics.add.sprite(...coordinates(23.5, 4.5), 'winSquare');
     this.drRedNose = drRedNoseCharacter(this, ...coordinates(9, 18));
     this.player = playerCharacter(this, ...coordinates(9, 19));
-    this.winSquare = this.physics.add.sprite(...coordinates(23.5, 4.5), 'winSquare');
+    this.ghost = ghostCharacter(this, ...coordinates(10, 15));
+
+    this.spotlight = this.physics.add.sprite(...coordinates(9, 19), 'spotlight')
 
     //The things the player can interact with in the game.  When the player is nearby, they'll be prompted with help text.
     var interactables = [this.drRedNose, this.winSquare];
@@ -50,7 +53,7 @@ export class SimpleScene extends Phaser.Scene {
     // setupPlayerMovement(this, this.player, this.steps);
 
     // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
-    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+    // this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
 
     this.input.keyboard.on('keydown_SPACE', (event) => {
@@ -65,6 +68,10 @@ export class SimpleScene extends Phaser.Scene {
   update (time,delta) {
     // follow character
     this.cameras.main.centerOn(this.player.x, this.player.y)
+
+    this.spotlight.x = this.player.x;
+    this.spotlight.y = this.player.y;
+    // this.cameras.main.centerOn(this.player.x, this.player.y)
   }
 
   winner() {
