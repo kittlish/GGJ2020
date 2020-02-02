@@ -17,10 +17,23 @@ export class SimpleScene extends Phaser.Scene {
     this.setupEnvironmentAndPlayer();
     this.setupMovement();
       
+    var drRColor = '#800000';
+    var healaColor = '#000066';
+      
     var textContainer = this.add.container(350, 250);
     var mainText = this.add.text(0,0,'');
+    var drRText = this.add.text(0,10,'');
+    var healdaText = this.addtext(0, 20, '');
+      
     mainText.setStroke('#000', 8);
     mainText.setShadow(2, 2, "#333333", 2, true, true);
+      
+    drRText.setStroke('#000', 8);
+    healdaText.setStroke('#000', 8);
+      
+    drRText.setShadow(2, 2, , true, true);
+    healdaText.setShadow(2, 2, , true, true);  
+      
     textContainer.add(mainText);
       
     var helloText = 'Welcome to our game!';
