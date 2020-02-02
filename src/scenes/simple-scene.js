@@ -218,6 +218,33 @@ export class SimpleScene extends Phaser.Scene {
     });
     this.anims.create({ key: 'playerWalkingDown', frames: playerWalkingDownFrames, frameRate: 6, repeat: -1 });
 
+    // gray player
+    var grayPlayerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'player/right/gray/', suffix: '.png'
+    });
+    this.anims.create({ key: 'grayPlayerWalkingRight', frames: grayPlayerWalkingRightFrames, frameRate: 6, repeat: -1 });
+
+    var grayPlayerWalkingLeftFrames = this.anims.generateFrameNames('allSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'player/left/gray/', suffix: '.png'
+    });
+    this.anims.create({ key: 'grayPlayerWalkingLeft', frames: grayPlayerWalkingLeftFrames, frameRate: 6, repeat: -1 });
+
+    var grayPlayerWalkingUpFrames = this.anims.generateFrameNames('allSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'player/up/gray/', suffix: '.png'
+    });
+    this.anims.create({ key: 'grayPlayerWalkingUp', frames: grayPlayerWalkingUpFrames, frameRate: 6, repeat: -1 });
+
+    var grayPlayerWalkingDownFrames = this.anims.generateFrameNames('allSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'player/down/gray/', suffix: '.png'
+    });
+    this.anims.create({ key: 'grayPlayerWalkingDown', frames: grayPlayerWalkingDownFrames, frameRate: 6, repeat: -1 });
+
+
+
     this.player.anims.play('playerWalkingRight');
     this.player.setCollideWorldBounds(true);
   }
