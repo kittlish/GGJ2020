@@ -8,6 +8,7 @@ import playerCharacter from '../characters/player';
 import ghostCharacter from '../characters/ghost';
 import setupPlayerMovement from '../lib/setupPlayerMovement';
 import setupDialog from '../lib/setupDialog';
+import updateGhostMovement from "../lib/updateGhostMovement";
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -65,7 +66,8 @@ export class SimpleScene extends Phaser.Scene {
 
   update (time,delta) {
     // follow character
-    this.cameras.main.centerOn(this.player.x, this.player.y)
+    this.cameras.main.centerOn(this.player.x, this.player.y);
+    updateGhostMovement(this.ghost, this.player);
   }
 
   displayWinText() {
