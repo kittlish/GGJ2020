@@ -6,13 +6,12 @@ export class SimpleScene extends Phaser.Scene {
 
   preload () {
     this.load.image('bg', 'assets/bg.png');
-    this.load.image('player', 'assets/Healda/standing/default/right.png');
     this.load.image('wall', 'assets/wall.png');
     this.load.audio('main_background_music', ['assets/game jam music draft 1.0.mp3']);
     this.load.audio('steps', ['assets/Steps.mp3']);
     this.load.audio('spooky', ['assets/spooookieeee.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
-    this.load.multiatlas('healdaSprites', 'assets/Healda/healda.json', 'assets/Healda');
+    this.load.image('playerBase', 'assets/player_base.png');
     this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
     this.load.image("tiles", "assets/tilesets/pretty_boy.png");
     this.load.tilemapTiledJSON("map", "assets/tilesets/pretty_boy.json");
@@ -23,13 +22,6 @@ export class SimpleScene extends Phaser.Scene {
     this.setupMusic();
     this.displayHelpText();
     this.setupMap();
-
-    const debugGraphics = this.add.graphics().setAlpha(0.75);
-    this.wallsLayer.renderDebug(debugGraphics, {
-      tileColor: null, // Color of non-colliding tiles
-      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-      faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-    });
 
     this.letCameraPan();
     this.setupDialog();    
@@ -45,11 +37,10 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   update (time,delta) {
-    const speed = 175;
+    const speed = 125;
     this.controls.update(delta);
 
-    // this.player.body.setVelocity(0);
-
+    // Horizontal movement
 
     // Normalize and scale the velocity so that player can't move faster along a diagonal
     this.player.body.velocity.normalize().scale(speed);
@@ -146,22 +137,17 @@ export class SimpleScene extends Phaser.Scene {
     this.steps = this.sound.add('steps');
     this.spooky = this.sound.add('spooky');
 
-    // this.backgroundMusic.play();
+//     this.backgroundMusic.play();
   }
 
   setupEnvironmentAndPlayer() {
-    //Create walls physics object
-    const walls = this.physics.add.staticGroup();
-    walls.create(400, 400, 'wall');
-
     //Create winSquare physics object
     this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
     this.setupGhost();
     this.setupDrRedNose();
     this.setupPlayer();
-    this.physics.add.collider(this.player, walls);
-    
+    this.physics.add.collider(this.player, this.wallsLayer);    
   }
 
   setupGhost() {
@@ -192,9 +178,10 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   setupPlayer() {
-    //Player Object
-    this.player = this.physics.add.sprite(400, 200, 'player');
-    this.player.setScale(2, 2);
+    this.player = this.physics.add.sprite(320, 200, 'playerBase');
+    this.player.setSize(10,15);
+    this.player.setOffset(0,30);
+    this.player.setScale(1.5);
 
     var playerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
       start: 1, end: 2, zeroPad: 1,
@@ -222,41 +209,43 @@ export class SimpleScene extends Phaser.Scene {
 
     // gray player
     var grayPlayerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
+      start: 1, end: 6, zeroPad: 1,
       prefix: 'player/right/gray/', suffix: '.png'
     });
-    this.anims.create({ key: 'grayPlayerWalkingRight', frames: grayPlayerWalkingRightFrames, frameRate: 6, repeat: -1 });
+    this.anims.create({ key: 'grayPlayerWalkingRight', frames: grayPlayerWalkingRightFrames, frameRate: 10, repeat: -1 });
 
     var grayPlayerWalkingLeftFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
+      start: 1, end: 6, zeroPad: 1,
       prefix: 'player/left/gray/', suffix: '.png'
     });
-    this.anims.create({ key: 'grayPlayerWalkingLeft', frames: grayPlayerWalkingLeftFrames, frameRate: 6, repeat: -1 });
+    this.anims.create({ key: 'grayPlayerWalkingLeft', frames: grayPlayerWalkingLeftFrames, frameRate: 10, repeat: -1 });
 
     var grayPlayerWalkingUpFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 8, zeroPad: 1,
+      start: 1, end: 6, zeroPad: 1,
       prefix: 'player/up/gray/', suffix: '.png'
     });
-    this.anims.create({ key: 'grayPlayerWalkingUp', frames: grayPlayerWalkingUpFrames, frameRate: 6, repeat: -1 });
+    this.anims.create({ key: 'grayPlayerWalkingUp', frames: grayPlayerWalkingUpFrames, frameRate: 10, repeat: -1 });
 
     var grayPlayerWalkingDownFrames = this.anims.generateFrameNames('allSprites', {
-      start: 1, end: 2, zeroPad: 1,
+      start: 1, end: 6, zeroPad: 1,
       prefix: 'player/down/gray/', suffix: '.png'
     });
-    this.anims.create({ key: 'grayPlayerWalkingDown', frames: grayPlayerWalkingDownFrames, frameRate: 6, repeat: -1 });
+    this.anims.create({ key: 'grayPlayerWalkingDown', frames: grayPlayerWalkingDownFrames, frameRate: 10, repeat: -1 });
 
     // this.anims.create({ key: 'blueBottom', frames: [{ key: 'allSprites', frame: 'level/Blue bottom.png'}] })
-    this.anims.create({ key: 'playerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/default/right.png" }] })
-    this.anims.create({ key: 'playerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/default/back.png" }] })
-    this.anims.create({ key: 'playerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/default/left.png" }] })
-    this.anims.create({ key: 'playerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/default/front.png" }] })
-    this.anims.create({ key: 'grayPlayerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/gray/right.png" }] })
-    this.anims.create({ key: 'grayPlayerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/gray/back.png" }] })
-    this.anims.create({ key: 'grayPlayerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/gray/left.png" }] })
-    this.anims.create({ key: 'grayPlayerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/gray/front.png" }] })
+    // this.anims.create({ key: 'playerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/default/right.png" }] })
+    // this.anims.create({ key: 'playerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/default/back.png" }] })
+    // this.anims.create({ key: 'playerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/default/left.png" }] })
+    // this.anims.create({ key: 'playerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/default/front.png" }] })
+    // this.anims.create({ key: 'grayPlayerStandingRight', frames: [{ key: 'allSprites', frame: "player/standing/gray/right.png" }] })
+    // this.anims.create({ key: 'grayPlayerStandingUp', frames: [{ key: 'allSprites', frame: "player/standing/gray/back.png" }] })
+    // this.anims.create({ key: 'grayPlayerStandingLeft', frames: [{ key: 'allSprites', frame: "player/standing/gray/left.png" }] })
+    // this.anims.create({ key: 'grayPlayerStandingDown', frames: [{ key: 'allSprites', frame: "player/standing/gray/front.png" }] })
 
-    this.player.anims.play('grayPlayerStandingDown');
+    // this.player.anims.play('grayPlayerStandingDown');
     this.player.setCollideWorldBounds(true);
+
+    this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   displayHelpText() {
@@ -362,6 +351,5 @@ export class SimpleScene extends Phaser.Scene {
     const floorLayer = this.map.createStaticLayer("Floors", tileset, 0, 0);
     this.wallsLayer = this.map.createStaticLayer("Walls", tileset, 0, 0);
     this.wallsLayer.setCollisionByProperty({ collides: true });
-    this.wallsLayer.setCollisionBetween(12, 44);
   }
 }

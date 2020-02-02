@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"plz.json"
+         "target":"pretty_boy.json"
         }
     },
  "height":18,
@@ -21,7 +21,7 @@
          "offsety":0.352585002328901,
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":27,
          "x":0,
          "y":0
@@ -48,7 +48,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":4,
+ "nextlayerid":5,
  "nextobjectid":1,
  "orientation":"orthogonal",
  "renderorder":"right-down",
@@ -66,6 +66,16 @@
          "spacing":0,
          "tilecount":1,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":0,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
          "tilewidth":32,
          "transparentcolor":"#270d82"
         }, 
