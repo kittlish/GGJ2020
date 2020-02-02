@@ -1,6 +1,6 @@
 import inRange from '../lib/inRange';
 import callText from '../lib/callText.js';
-//import newLine from '../lib/newLine';
+
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -33,7 +33,7 @@ export class SimpleScene extends Phaser.Scene {
     drRText.setStroke('#000', 8);
     drRText.setShadow(2, 2, drRColor, true, true);
       
-
+    healdaText.setStroke('#000', 8);
     healdaText.setShadow(2, 2, healdaColor, true, true);  
       
     textContainer.add(mainText);
