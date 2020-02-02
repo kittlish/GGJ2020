@@ -14,7 +14,7 @@ export class SimpleScene extends Phaser.Scene {
   preload () {
     this.load.image('bg', 'assets/bg.png');
     this.load.image('wall', 'assets/wall.png');
-    this.load.audio('main_background_music', ['assets/game jam music draft 1.0.mp3']);
+    this.load.audio('main_background_music', ['assets/the little robot that could.ogg']);
     this.load.audio('steps', ['assets/Steps.mp3']);
     this.load.audio('spooky', ['assets/spooookieeee.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
@@ -29,7 +29,7 @@ export class SimpleScene extends Phaser.Scene {
     this.displayHelpText();
     this.setupMap();
 
-    //this.setupDialog();    
+    //this.setupDialog();
 
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
     this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
@@ -58,7 +58,7 @@ export class SimpleScene extends Phaser.Scene {
     // follow character
     this.cameras.main.centerOn(this.player.x, this.player.y)
   }
-    
+
   displayWinText() {
     var winningText = this.add.text(700, 100, 'Winner!');
     winningText.setStroke('#000', 8);
@@ -74,7 +74,7 @@ export class SimpleScene extends Phaser.Scene {
     this.steps = this.sound.add('steps');
     this.spooky = this.sound.add('spooky');
 
-//     this.backgroundMusic.play();
+    this.backgroundMusic.play({loop: true});
   }
 
   displayHelpText() {
@@ -89,7 +89,7 @@ export class SimpleScene extends Phaser.Scene {
       .setScrollFactor(0);
   }
 
- 
+
 
   setupMap() {
     this.map = this.make.tilemap({ key: "chadMap" });
