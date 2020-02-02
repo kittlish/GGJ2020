@@ -1,4 +1,5 @@
 import inRange from '../lib/inRange';
+import callText from '../lib/callText.js';
 
 export class SimpleScene extends Phaser.Scene {
 
@@ -9,11 +10,26 @@ export class SimpleScene extends Phaser.Scene {
     this.load.audio('poppins_quality_whistling', ['assets/Poppins_Quality_Whistling_2.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
   }
+    
 
   create () {
     this.playMusic();
     this.setupEnvironmentAndPlayer();
     this.setupMovement();
+      
+    var textContainer = this.add.container(350, 250);
+    var mainText = this.add.text(0,0,'');
+    mainText.setStroke('#000', 8);
+    mainText.setShadow(2, 2, "#333333", 2, true, true);
+    textContainer.add(mainText);
+      
+    var helloText = 'Welcome to our game!';
+      
+    callText(mainText, helloText, 2000); 
+      
+    this.input.keyboard.on('keydown_G', (event) => {
+        callText(mainText, 'You pressed G!', 1000);
+    });
     
     this.input.keyboard.on('keydown_SPACE', (event) => {
       if (inRange(this.player, this.winSquare)) {
@@ -25,7 +41,7 @@ export class SimpleScene extends Phaser.Scene {
   update() {
 
   }
-
+    
   displayWinText() {
     var winningText = this.add.text(10, 10, 'Winner!');
     winningText.setStroke('#000', 8);
@@ -42,6 +58,8 @@ export class SimpleScene extends Phaser.Scene {
     });
 
     const playerSpeed = 160;
+      
+    
 
     // Enables movement of player with arrow keys
     this.input.keyboard.on('keydown_UP', (event) => {
