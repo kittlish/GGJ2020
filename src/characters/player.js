@@ -4,6 +4,7 @@ export default (scene, coordX, coordY) => {
     player.setOffset(1, 30);
     player.setScale(1.5);
     player.healed = false;
+    player.hasWon = false;
 
     var playerWalkingRightFrames = scene.anims.generateFrameNames('allSprites', {
         start: 1, end: 2, zeroPad: 1,

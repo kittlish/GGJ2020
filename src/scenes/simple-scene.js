@@ -54,7 +54,7 @@ export class SimpleScene extends Phaser.Scene {
 
 
     this.input.keyboard.on('keydown_SPACE', (event) => {
-      if (inRange(this.player, this.winSquare)) {
+      if (inRange(this.player, this.winSquare) && !this.player.hasWon) {
         this.winner();
       }
     });
@@ -79,7 +79,8 @@ export class SimpleScene extends Phaser.Scene {
     this.backgroundMusic.stop();
     victoryTheme(this);
 
-    //DISABLECONTROLS HERE
+    //disable winning
+    this.player.hasWon = true;
   }
 
   setupMusic() {
