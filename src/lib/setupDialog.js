@@ -10,14 +10,12 @@ export default function setupDialog(scene){
     var notResult;
     var test = pattern.exec(string);
 
-    if (string.length < 40 && test){
+    if (test){
       result = test[0];
-      notResult = string.substring(result.length, string.length);
+      notResult = string.slice(result.length, string.length);
       string = result + '\n' + trimLine(notResult);
     }
-
-    console.log(string);
-
+    
     return string;
   }
 
