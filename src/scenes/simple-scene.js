@@ -40,7 +40,6 @@ export class SimpleScene extends Phaser.Scene {
   update (time,delta) {
     const speed = 125;
     this.controls.update(delta);
-
     // Horizontal movement
 
     // Normalize and scale the velocity so that player can't move faster along a diagonal
@@ -278,7 +277,6 @@ export class SimpleScene extends Phaser.Scene {
     var startingLine = 0;
     var myline;
 
-
     var lines = [
       { speaker: 'Dr. R', line: 'Hello-ho-ho-ho you, over there! Please, help me!' },
       { speaker: 'Healda', line: 'o.O ...' },
@@ -308,22 +306,27 @@ export class SimpleScene extends Phaser.Scene {
 
 
     this.input.keyboard.on('keydown_G', (event) => {
-      if (startingLine > 0) {
+      if(inRange(this.player, this.drRedNose)){
+        if (startingLine > 0) {
+          drRText.setText('');
+          healdaText.setText('');
+        }
+  
+        if (startingLine < lines.length) {
+          myline = lines[startingLine];
+          if (myline.speaker == 'Dr. R') {
+            callText(drRText, myline.line);
+          }
+          if (myline.speaker == 'Healda') {
+            callText(healdaText, myline.line);
+          }
+  
+        }
+        startingLine = (startingLine + 1) % (lines.length + 1);
+      }else{
         drRText.setText('');
         healdaText.setText('');
       }
-
-      if (startingLine < lines.length) {
-        myline = lines[startingLine];
-        if (myline.speaker == 'Dr. R') {
-          callText(drRText, myline.line);
-        }
-        if (myline.speaker == 'Healda') {
-          callText(healdaText, myline.line);
-        }
-
-      }
-      startingLine++;
     });
   }
 
