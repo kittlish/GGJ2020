@@ -35,6 +35,7 @@ export class SimpleScene extends Phaser.Scene {
     this.player = playerCharacter(this, ...coordinates(10, 17));
     this.winSquare = this.physics.add.sprite(...coordinates(23, 3), 'winSquare');
 
+    // set up interactions between things
     this.physics.add.collider(this.player, this.wallsLayer);
 
     setupPlayerMovement(this, this.player, this.steps);
