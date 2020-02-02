@@ -1,6 +1,6 @@
-export default function(textObj, textStr, timeout){
+export default function(textObj, textStr){
     textObj.setText(textStr);
-    setTimeout(() => {
-        textObj.setText('');
-    }, timeout);
+//    setTimeout(() => {
+//        textObj.setText('');
+//    }, timeout);
 }

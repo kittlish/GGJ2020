@@ -28,9 +28,6 @@ export class SimpleScene extends Phaser.Scene {
     var drRText = configText(this.add.text(0,20,''), textContainer, '#000', drRColor);
     var healdaText = configText(this.add.text(0, 40, ''), textContainer, '#000', healdaColor);
       
-    var startingLine = 0;
-    var myline;
-      
     var lines = [
         {speaker: 'Dr. R', line: 'Hello-ho-ho-ho you, over there! Please, help me!'},
         {speaker: 'Healda', line:  'o.O ...'},
@@ -48,17 +45,28 @@ export class SimpleScene extends Phaser.Scene {
       
     var helloText = 'Welcome to our game!';
       
-    callText(mainText, helloText, 2000); 
+    callText(mainText, helloText);
+    setTimeout(() => {callText(mainText, '')});
+      
+    var currentTextObj;
+    var startingLine = 0;
+    var myline;
       
     this.input.keyboard.on('keydown_G', (event) => {
+        if(startingLine > 0){
+            drRText.setText('');
+            healdaText.setText('');
+        }
+        
         if(startingLine < lines.length){
             myline = lines[startingLine];
             if(myline.speaker == 'Dr. R'){
-                callText(drRText, myline.line, 2000);
+                callText(drRText, myline.line);
             }
             if(myline.speaker == 'Healda'){
-                callText(healdaText, myline.line, 2000);
+                callText(healdaText, myline.line);
             }
+            
         }
         startingLine++;
     });
@@ -89,8 +97,7 @@ export class SimpleScene extends Phaser.Scene {
       'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
     });
 
-    const playerSpeed = 160;
-      
+    const playerSpeed = 160;   
     
 
     // Enables movement of player with arrow keys
