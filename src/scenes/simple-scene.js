@@ -5,10 +5,11 @@ export class SimpleScene extends Phaser.Scene {
 
   preload () {
     this.load.image('bg', 'assets/bg.png');
-    this.load.image('player', 'assets/botty.png');
+    this.load.image('player', 'assets/Healda/standing/default/right.png');
     this.load.image('wall', 'assets/wall.png');
-    this.load.audio('poppins_quality_whistling', ['assets/Poppins_Quality_Whistling_2.mp3']);
+    this.load.audio('main_background_music', ['assets/game jam music draft 1.0.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
+    this.load.multiatlas('healdaSprites', 'assets/Healda/healda.json', 'assets/Healda');
   }
     
 
@@ -109,7 +110,7 @@ export class SimpleScene extends Phaser.Scene {
   }
 
   playMusic() {
-     const happyBackgroundMusic = this.sound.add('poppins_quality_whistling');
+     const happyBackgroundMusic = this.sound.add('main_background_music');
       happyBackgroundMusic.play();
   }
 
@@ -123,10 +124,22 @@ export class SimpleScene extends Phaser.Scene {
     //Create winSquare physics object
     this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
+    this.setupPlayer();
+    this.physics.add.collider(this.player, walls);
+  }
+
+  setupPlayer() {
     //Player Object
     this.player = this.physics.add.sprite(400, 200, 'player');
-    this.player.setCollideWorldBounds(true);
+    this.player.setScale(2, 2);
 
-    this.physics.add.collider(this.player, walls);
+    var walkingRightFrames = this.anims.generateFrameNames('healdaSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'right/default/', suffix: '.png'
+    });
+    this.anims.create({ key: 'walkingRight', frames: walkingRightFrames, frameRate: 6, repeat: -1 });
+    this.player.anims.play('walkingRight');
+
+    this.player.setCollideWorldBounds(true);
   }
 }
