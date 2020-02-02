@@ -24,8 +24,8 @@ export class SimpleScene extends Phaser.Scene {
       
     var textContainer = this.add.container(350, 250);
     var mainText = this.add.text(0,0,'');
-    var drRText = this.add.text(0,10,'');
-    var healdaText = this.add.text(0, 20, '');
+    var drRText = this.add.text(0,20,'');
+    var healdaText = this.add.text(0, 40, '');
       
     mainText.setStroke('#000', 8);
     mainText.setShadow(2, 2, "#333333", 2, true, true);
@@ -60,11 +60,11 @@ export class SimpleScene extends Phaser.Scene {
             if(myline.speaker == 'Dr. R'){
                 callText(drRText, myline.line, 2000);
             }
-            if(line.speaker == 'Healda'){
+            if(myline.speaker == 'Healda'){
                 callText(healdaText, myline.line, 2000);
             }
-            startingLine++;
         }
+        startingLine++;
     });
     
     this.input.keyboard.on('keydown_SPACE', (event) => {
