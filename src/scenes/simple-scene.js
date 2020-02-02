@@ -163,8 +163,21 @@ export class SimpleScene extends Phaser.Scene {
     //Create winSquare physics object
     this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
+    this.setupGhost();
     this.setupPlayer();
     this.physics.add.collider(this.player, walls);
+  }
+
+  setupGhost() {
+    this.ghost1 = this.physics.add.sprite(500, 300);
+ 
+    var ghostWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'npc/ghosties/ghost ', suffix: '.png'
+    });
+    this.anims.create({ key: 'ghostWalkingRight', frames: ghostWalkingRightFrames, frameRate: 6, repeat: -1 });
+    
+    this.ghost1.anims.play('ghostWalkingRight');
   }
 
   setupPlayer() {
