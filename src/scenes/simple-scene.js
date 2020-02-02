@@ -1,5 +1,6 @@
 import inRange from '../lib/inRange';
 import callText from '../lib/callText.js';
+import configText from '../lib/configText'
 
 
 export class SimpleScene extends Phaser.Scene {
@@ -22,23 +23,10 @@ export class SimpleScene extends Phaser.Scene {
     var drRColor = '#800000';
     var healdaColor = '#000066';
       
-    var textContainer = this.add.container(350, 250);
-    var mainText = this.add.text(0,0,'');
-    var drRText = this.add.text(0,20,'');
-    var healdaText = this.add.text(0, 40, '');
-      
-    mainText.setStroke('#000', 8);
-    mainText.setShadow(2, 2, "#333333", 2, true, true);
-      
-    drRText.setStroke('#000', 8);
-    drRText.setShadow(2, 2, drRColor, true, true);
-      
-    healdaText.setStroke('#000', 8);
-    healdaText.setShadow(2, 2, healdaColor, true, true);  
-      
-    textContainer.add(mainText);
-    textContainer.add(drRText);
-    textContainer.add(healdaText);
+    var textContainer = this.add.container(150, 250);
+    var mainText = configText(this.add.text(0,0,''), textContainer, '#000', '#333333');   
+    var drRText = configText(this.add.text(0,20,''), textContainer, '#000', drRColor);
+    var healdaText = configText(this.add.text(0, 40, ''), textContainer, '#000', healdaColor);
       
     var startingLine = 0;
     var myline;
@@ -47,7 +35,12 @@ export class SimpleScene extends Phaser.Scene {
         {speaker: 'Dr. R', line: 'Hello-ho-ho-ho you, over there! Please, help me!'},
         {speaker: 'Healda', line:  'o.O ...'},
         {speaker: 'Dr. R', line: 'well?'},
-        {speaker: 'Healda', line: 'bee boop'}
+        {speaker: 'Healda', line: 'bee boop'},
+        {speaker: 'Dr. R', line: 'do you even understand me?'},
+        {speaker: 'Healda', line: '[nods]'},
+        {speaker: 'Dr. R', line: 'Oh you don\'t speak do you? Well never mind that, you must help me! That would be the nice thing to do and you wouldn\'t happen to be one of the naughty ones, would you? You don’t seem the naughty type...'},
+        {speaker: 'Healda', line: 'o.o'}
+                
     ]
       
     var helloText = 'Welcome to our game!';
