@@ -13,6 +13,7 @@ export class SimpleScene extends Phaser.Scene {
     this.load.audio('spooky', ['assets/spooookieeee.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
     this.load.multiatlas('healdaSprites', 'assets/Healda/healda.json', 'assets/Healda');
+    this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
   }
     
 
@@ -100,21 +101,21 @@ export class SimpleScene extends Phaser.Scene {
     // Enables movement of player with arrow keys
     this.input.keyboard.on('keydown_UP', (event) => {
       this.player.setVelocityY(-playerSpeed);
-      this.player.anims.play('walkingUp');
+      this.player.anims.play('playerWalkingUp');
 
     });
     this.input.keyboard.on('keydown_DOWN', (event) => {
       this.player.setVelocityY(playerSpeed);
-      this.player.anims.play('walkingDown');
+      this.player.anims.play('playerWalkingDown');
 
     });
     this.input.keyboard.on('keydown_LEFT', (event) => {
       this.player.setVelocityX(-playerSpeed);
-      this.player.anims.play('walkingLeft');
+      this.player.anims.play('playerWalkingLeft');
     });
     this.input.keyboard.on('keydown_RIGHT', (event) => {
       this.player.setVelocityX(playerSpeed);
-      this.player.anims.play('walkingRight');
+      this.player.anims.play('playerWalkingRight');
     });
 
     const allKeysAreUp = function () { return moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp; }
@@ -171,31 +172,31 @@ export class SimpleScene extends Phaser.Scene {
     this.player = this.physics.add.sprite(400, 200, 'player');
     this.player.setScale(2, 2);
 
-    var walkingRightFrames = this.anims.generateFrameNames('healdaSprites', {
+    var playerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
       start: 1, end: 2, zeroPad: 1,
-      prefix: 'right/default/', suffix: '.png'
+      prefix: 'player/right/default/', suffix: '.png'
     });
-    this.anims.create({ key: 'walkingRight', frames: walkingRightFrames, frameRate: 6, repeat: -1 });
+    this.anims.create({ key: 'playerWalkingRight', frames: playerWalkingRightFrames, frameRate: 6, repeat: -1 });
 
-    var walkingLeftFrames = this.anims.generateFrameNames('healdaSprites', {
+    var playerWalkingLeftFrames = this.anims.generateFrameNames('allSprites', {
       start: 1, end: 2, zeroPad: 1,
-      prefix: 'left/default/', suffix: '.png'
+      prefix: 'player/left/default/', suffix: '.png'
     });
-    this.anims.create({ key: 'walkingLeft', frames: walkingLeftFrames, frameRate: 6, repeat: -1 });
+    this.anims.create({ key: 'playerWalkingLeft', frames: playerWalkingLeftFrames, frameRate: 6, repeat: -1 });
 
-    var walkingUpFrames = this.anims.generateFrameNames('healdaSprites', {
+    var playerWalkingUpFrames = this.anims.generateFrameNames('allSprites', {
       start: 1, end: 2, zeroPad: 1,
-      prefix: 'up/default/', suffix: '.png'
+      prefix: 'player/up/default/', suffix: '.png'
     });
-    this.anims.create({ key: 'walkingUp', frames: walkingUpFrames, frameRate: 6, repeat: -1 });
+    this.anims.create({ key: 'playerWalkingUp', frames: playerWalkingUpFrames, frameRate: 6, repeat: -1 });
 
-    var walkingDownFrames = this.anims.generateFrameNames('healdaSprites', {
+    var playerWalkingDownFrames = this.anims.generateFrameNames('allSprites', {
       start: 1, end: 2, zeroPad: 1,
-      prefix: 'down/default/', suffix: '.png'
+      prefix: 'player/down/default/', suffix: '.png'
     });
-    this.anims.create({ key: 'walkingDown', frames: walkingDownFrames, frameRate: 6, repeat: -1 });
+    this.anims.create({ key: 'playerWalkingDown', frames: playerWalkingDownFrames, frameRate: 6, repeat: -1 });
 
-    this.player.anims.play('walkingRight');
+    this.player.anims.play('playerWalkingRight');
     this.player.setCollideWorldBounds(true);
   }
 }
