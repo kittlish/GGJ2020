@@ -29,12 +29,20 @@ export class SimpleScene extends Phaser.Scene {
     this.displayHelpText();
     this.setupMap();
 
-    //this.setupDialog();
-
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
     this.drRedNose = drRedNoseCharacter(this, ...coordinates(17, 15));
     this.player = playerCharacter(this, ...coordinates(10, 17));
     this.winSquare = this.physics.add.sprite(...coordinates(23, 3), 'winSquare');
+
+    //The things the player can interact with in the game.  When the player is nearby, they'll be prompted with help text.
+    var interactables = [this.drRedNose, this.winSquare];
+    for(var i = 0; i < interactables.length; i++){
+      this.physics.add.overlap(this.player, interactables[i], () => {
+        displayInteractText(this, this.cameras);
+      }, null, true);
+    }
+
+    
 
     // set up interactions between things
     this.physics.add.collider(this.player, this.wallsLayer);
