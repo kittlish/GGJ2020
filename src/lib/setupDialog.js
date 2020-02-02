@@ -3,11 +3,29 @@ import configText from '../lib/configText';
 import callText from '../lib/callText';
 
 export default function setupDialog(scene){
+
+  function trimLine(string){
+    var pattern = /.{40,50}\s/;
+    var result;
+    var notResult;
+    var test = pattern.exec(string);
+
+    if (string.length < 40 && test){
+      result = test[0];
+      notResult = string.substring(result.length, string.length);
+      string = result + '\n' + trimLine(notResult);
+    }
+
+    console.log(string);
+
+    return string;
+  }
+
     var drRColor = '#800000';
     var healdaColor = '#000066';
 
     var textContainer = scene.add.container(150, 250);
-    var dialogueContainer = scene.add.container(50, 250);
+    var dialogueContainer = scene.add.container(scene.player.x, scene.player.y);
 
 
     var mainText = configText(scene.add.text(0, 0, '', { align: 'center' }), textContainer, '#000', '#333333');
@@ -57,10 +75,10 @@ export default function setupDialog(scene){
         if (startingLine < lines.length) {
           myline = lines[startingLine];
           if (myline.speaker == 'Dr. R') {
-            callText(drRText, myline.line);
+            callText(drRText, trimLine(myline.line));
           }
           if (myline.speaker == 'Healda') {
-            callText(healdaText, myline.line);
+            callText(healdaText, trimLine(myline.line));
           }
   
         }
