@@ -27,7 +27,10 @@ export class SimpleScene extends Phaser.Scene {
     var mainText = configText(this.add.text(0,0,''), textContainer, '#000', '#333333');   
     var drRText = configText(this.add.text(0,20,''), textContainer, '#000', drRColor);
     var healdaText = configText(this.add.text(0, 40, ''), textContainer, '#000', healdaColor);
-      
+     
+    var startingLine = 0;
+    var myline;
+
     var lines = [
         {speaker: 'Dr. R', line: 'Hello-ho-ho-ho you, over there! Please, help me!'},
         {speaker: 'Healda', line:  'o.O ...'},
@@ -46,11 +49,10 @@ export class SimpleScene extends Phaser.Scene {
     var helloText = 'Welcome to our game!';
       
     callText(mainText, helloText);
-    setTimeout(() => {callText(mainText, '')});
+    setTimeout(() => {callText(mainText, '')}, 2000);
       
     var currentTextObj;
-    var startingLine = 0;
-    var myline;
+
       
     this.input.keyboard.on('keydown_G', (event) => {
         if(startingLine > 0){
