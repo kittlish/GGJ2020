@@ -6,13 +6,11 @@ export class SimpleScene extends Phaser.Scene {
 
   preload () {
     this.load.image('bg', 'assets/bg.png');
-    this.load.image('player', 'assets/Healda/standing/default/right.png');
     this.load.image('wall', 'assets/wall.png');
     this.load.audio('main_background_music', ['assets/game jam music draft 1.0.mp3']);
     this.load.audio('steps', ['assets/Steps.mp3']);
     this.load.audio('spooky', ['assets/spooookieeee.mp3']);
     this.load.image('winSquare', 'assets/npc.png');
-    this.load.multiatlas('healdaSprites', 'assets/Healda/healda.json', 'assets/Healda');
     this.load.multiatlas('allSprites', 'assets/ggj2020.json', 'assets');
     this.load.image("tiles", "assets/tilesets/pretty_boy.png");
     this.load.tilemapTiledJSON("map", "assets/tilesets/pretty_boy.json");
@@ -49,18 +47,6 @@ export class SimpleScene extends Phaser.Scene {
     this.controls.update(delta);
 
     // Horizontal movement
-    if (cursors.left.isDown) {
-      player.body.setVelocityX(-speed);
-    } else if (cursors.right.isDown) {
-      player.body.setVelocityX(speed);
-    }
-
-    // Vertical movement
-    if (cursors.up.isDown) {
-      player.body.setVelocityY(-speed);
-    } else if (cursors.down.isDown) {
-      player.body.setVelocityY(speed);
-    }
 
     // Normalize and scale the velocity so that player can't move faster along a diagonal
     this.player.body.velocity.normalize().scale(speed);
@@ -204,7 +190,7 @@ export class SimpleScene extends Phaser.Scene {
 
   setupPlayer() {
     //Player Object
-    this.player = this.physics.add.sprite(400, 200, 'player');
+    this.player = this.physics.add.sprite(320, 200, 'player');
     this.player.setScale(2, 2);
 
     var playerWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
@@ -269,7 +255,7 @@ export class SimpleScene extends Phaser.Scene {
     this.player.anims.play('grayPlayerStandingDown');
     this.player.setCollideWorldBounds(true);
 
-    this.physics.add.collider(this.player, walls);
+    this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   displayHelpText() {
