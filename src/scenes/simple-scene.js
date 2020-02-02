@@ -173,6 +173,7 @@ export class SimpleScene extends Phaser.Scene {
     this.winSquare = this.physics.add.sprite(200, 200, 'winSquare');
 
     this.setupGhost();
+    this.setupDrRedNose();
     this.setupPlayer();
     this.physics.add.collider(this.player, walls);
   }
@@ -182,11 +183,25 @@ export class SimpleScene extends Phaser.Scene {
  
     var ghostWalkingRightFrames = this.anims.generateFrameNames('allSprites', {
       start: 1, end: 2, zeroPad: 1,
-      prefix: 'npc/ghosties/ghost ', suffix: '.png'
+      prefix: 'npc/ghosties/', suffix: '.png'
     });
     this.anims.create({ key: 'ghostWalkingRight', frames: ghostWalkingRightFrames, frameRate: 6, repeat: -1 });
     
     this.ghost1.anims.play('ghostWalkingRight');
+  }
+
+  setupDrRedNose() {
+    this.drRedNose = this.physics.add.sprite(200, 500);
+ 
+    var drRedNoseFrames = this.anims.generateFrameNames('allSprites', {
+      start: 1, end: 2, zeroPad: 1,
+      prefix: 'npc/dr-red-nose/', suffix: '.png'
+    });
+    this.anims.create({ key: 'drRedNoseStanding', frames: drRedNoseFrames, frameRate: 6, repeat: -1 });
+    
+    this.drRedNose.anims.play('drRedNoseStanding');
+    this.drRedNose.setScale(2, 2);
+
   }
 
   setupPlayer() {
