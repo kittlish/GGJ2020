@@ -1,3 +1,7 @@
+import inRange from '../lib/inRange';
+import configText from '../lib/configText';
+import callText from '../lib/callText';
+
 export default function setupDialog(scene){
     var drRColor = '#800000';
     var healdaColor = '#000066';
