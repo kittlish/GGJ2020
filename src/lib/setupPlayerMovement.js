@@ -14,6 +14,8 @@ export default function setupMovement (scene, player, walkingSounds) {
     // Enables movement of player with arrow keys
     scene.input.keyboard.on('keydown_UP', (event) => {
         player.setVelocityY(-playerSpeed);
+        player.currentAnim = "up";
+        player.stopped = false;
         if (player.healed) {
             player.anims.play('playerWalkingUp');
         } else { // injured
@@ -23,6 +25,8 @@ export default function setupMovement (scene, player, walkingSounds) {
     });
     scene.input.keyboard.on('keydown_DOWN', (event) => {
         player.setVelocityY(playerSpeed);
+        player.currentAnim = "down";
+        player.stopped = false;
         if (player.healed) {
             player.anims.play('playerWalkingDown');
         } else { // injured
@@ -32,6 +36,8 @@ export default function setupMovement (scene, player, walkingSounds) {
     });
     scene.input.keyboard.on('keydown_LEFT', (event) => {
         player.setVelocityX(-playerSpeed);
+        player.currentAnim = "left";
+        player.stopped = false;
         if (player.healed) {
             player.anims.play('playerWalkingLeft');
         } else { // injured
@@ -41,6 +47,8 @@ export default function setupMovement (scene, player, walkingSounds) {
     });
     scene.input.keyboard.on('keydown_RIGHT', (event) => {
         player.setVelocityX(playerSpeed);
+        player.currentAnim = "right";
+        player.stopped = false;
         if (player.healed) {
             player.anims.play('playerWalkingRight');
         } else { // injured
@@ -57,8 +65,9 @@ export default function setupMovement (scene, player, walkingSounds) {
             player.setVelocityY(0);
         }
         if (allKeysAreUp()) {
-            player.anims.stop(null, 1)
+            player.anims.stop(null, 1);
             walkingSounds.pause();
+            player.stopped = true;
         }
     });
     scene.input.keyboard.on('keyup_DOWN', (event) => {
@@ -66,8 +75,9 @@ export default function setupMovement (scene, player, walkingSounds) {
             player.setVelocityY(0);
         }
         if (allKeysAreUp()) {
-            player.anims.stop(null, 1)
+            player.anims.stop(null, 1);
             walkingSounds.pause();
+            player.stopped = true;
         }
     });
     scene.input.keyboard.on('keyup_LEFT', (event) => {
@@ -75,8 +85,9 @@ export default function setupMovement (scene, player, walkingSounds) {
             player.setVelocityX(0);
         }
         if (allKeysAreUp()) {
-            player.anims.stop(null, 1)
+            player.anims.stop(null, 1);
             walkingSounds.pause();
+            player.stopped = true;
         }
     });
     scene.input.keyboard.on('keyup_RIGHT', (event) => {
@@ -84,8 +95,9 @@ export default function setupMovement (scene, player, walkingSounds) {
             player.setVelocityX(0);
         }
         if (allKeysAreUp()) {
-            player.anims.stop(null, 1)
+            player.anims.stop(null, 1);
             walkingSounds.pause();
+            player.stopped = true;
         }
     });
 }

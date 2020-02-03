@@ -59,7 +59,11 @@ export class SimpleScene extends Phaser.Scene {
 
     this.input.keyboard.on('keydown_Z', (event) => {
       if (inRange(this.player, this.winSquare) && !this.player.hasWon) {
-        this.winner();
+        if (this.player.healed) {
+          this.winner();
+        } else {
+          
+        }
       }
     });
 
@@ -72,13 +76,23 @@ export class SimpleScene extends Phaser.Scene {
 
     this.cameras.main.centerOn(this.player.x, this.player.y);
     updateGhostMovement(this.ghost, this.player);
-    if (inRange(this.player, this.ghost, 80)) {
+    if (inRange(this.player, this.ghost, 80) && !this.player.hasWon) {
       if (!this.spooky.isPlaying) {
         this.spooky.play();
       }
-      this.player.healed = false;
-    } else {
-      this.player.healed = true;
+      updatePlayerHeal(this, false);
+      var ghostText = this.add
+        .text(320, 60, "get away from the ghost!", {
+          font: "18px monospace",
+          fill: "#ffffff",
+          padding: { x: 20, y: 10 },
+          backgroundColor: "#000000"
+        })
+        .setScrollFactor(0);
+      setTimeout(() => { ghostText.destroy(true) }, 10);
+    } else if (!this.player.healed) {
+      updatePlayerHeal(this, true);
+      
     }
   }
 
@@ -88,9 +102,6 @@ export class SimpleScene extends Phaser.Scene {
     winningText.setShadow(2, 2, "#333333", 2, true, true);
     callText(winningText, 'Winner!');
 
-    this.player.healed = true;
-    this.player.anims.play('playerWalkingDown');
-    this.player.anims.stop();
     this.backgroundMusic.stop();
     victoryTheme(this);
 
@@ -121,4 +132,38 @@ export class SimpleScene extends Phaser.Scene {
 function victoryTheme(scene) {
   const victoryMusic = scene.sound.add('victory_music');
   victoryMusic.play();
+}
+
+function updatePlayerHeal(scene, intendedHeal) {
+  if (scene.player.healed == intendedHeal) return;
+  scene.player.healed = intendedHeal;
+  switch (scene.player.currentAnim) {
+    case "right":
+      if(intendedHeal) {
+        scene.player.anims.play('playerWalkingRight');
+      } else {
+        scene.player.anims.play('grayPlayerWalkingRight');
+      }
+    case "left":
+      if (intendedHeal) {
+        scene.player.anims.play('playerWalkingLeft');
+      } else {
+        scene.player.anims.play('grayPlayerWalkingLeft');
+      }
+    case "up":
+      if (intendedHeal) {
+        scene.player.anims.play('playerWalkingUp');
+      } else {
+        scene.player.anims.play('grayPlayerWalkingUp');
+      }
+    default:
+      if (intendedHeal) {
+        scene.player.anims.play('playerWalkingDown');
+      } else {
+        scene.player.anims.play('grayPlayerWalkingDown');
+      }
+  }
+  if (scene.player.stopped) {
+    scene.player.anims.stop();
+  }
 }
