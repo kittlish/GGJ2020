@@ -18,30 +18,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.setScale(1.5);
         this.setCollideWorldBounds(true);
 
-        // set up animation frames
-        var animationsWithSources = {
-            'player-walking-left-default': 'player/left/default/',
-            'player-walking-right-default': 'player/right/default/',
-            'player-walking-up-default': 'player/up/default/',
-            'player-walking-down-default': 'player/down/default/',
-            'player-walking-left-gray': 'player/left/gray/',
-            'player-walking-right-gray': 'player/right/gray/',
-            'player-walking-up-gray': 'player/up/gray/',
-            'player-walking-down-gray': 'player/down/gray/',
-        }
-
-        Object.keys(animationsWithSources).forEach((animationKey) => {
-            var frames = scene.anims.generateFrameNames('allSprites', {
-                start: 1, end: 2, zeroPad: 1,
-                prefix: animationsWithSources[animationKey], suffix: '.png'
-            });
-            scene.anims.create({
-                key: animationKey,
-                frames: frames,
-                frameRate: 6,
-                repeat: -1
-            })
-        })
+        this.setUpAnimations();
 
         // Starts the player in the Walking Up animation
         this.anims.play('player-walking-up-default');
@@ -57,7 +34,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     updateMovement() {
         // Creates object for input with arrow keys
-        const moveKeys = scene.input.keyboard.addKeys({
+        const moveKeys = this.scene.input.keyboard.addKeys({
             'up': Phaser.Input.Keyboard.KeyCodes.UP,
             'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
             'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
@@ -118,5 +95,32 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._healed = newhealed;
 
         this.updateAnimation();
+    }
+
+    setUpAnimations() {
+        // set up animation frames
+        var animationsWithSources = {
+            'player-walking-left-default': 'player/left/default/',
+            'player-walking-right-default': 'player/right/default/',
+            'player-walking-up-default': 'player/up/default/',
+            'player-walking-down-default': 'player/down/default/',
+            'player-walking-left-gray': 'player/left/gray/',
+            'player-walking-right-gray': 'player/right/gray/',
+            'player-walking-up-gray': 'player/up/gray/',
+            'player-walking-down-gray': 'player/down/gray/',
+        }
+
+        Object.keys(animationsWithSources).forEach((animationKey) => {
+            var frames = this.scene.anims.generateFrameNames('allSprites', {
+                start: 1, end: 2, zeroPad: 1,
+                prefix: animationsWithSources[animationKey], suffix: '.png'
+            });
+            this.scene.anims.create({
+                key: animationKey,
+                frames: frames,
+                frameRate: 6,
+                repeat: -1
+            })
+        })
     }
 }
