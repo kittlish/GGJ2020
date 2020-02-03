@@ -37,7 +37,7 @@ export class SimpleScene extends Phaser.Scene {
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
 
     this.player.walkingSounds = this.sound.add('steps');
-    
+
     this.spotlight = this.physics.add.sprite(...coordinates(9, 19), 'spotlight')
 
     this.moveKeys = this.input.keyboard.addKeys({
@@ -145,32 +145,8 @@ function victoryTheme(scene) {
 function updatePlayerHeal(scene, intendedHeal) {
   if (scene.player.healed == intendedHeal) return;
   scene.player.healed = intendedHeal;
-  switch (scene.player.currentAnim) {
-    case "right":
-      if(intendedHeal) {
-        scene.player.anims.play('player-walking-right-default');
-      } else {
-        scene.player.anims.play('player-walking-right-gray');
-      }
-    case "left":
-      if (intendedHeal) {
-        scene.player.anims.play('player-walking-left-default');
-      } else {
-        scene.player.anims.play('player-walking-left-gray');
-      }
-    case "up":
-      if (intendedHeal) {
-        scene.player.anims.play('player-walking-up-default');
-      } else {
-        scene.player.anims.play('player-walking-up-gray');
-      }
-    default:
-      if (intendedHeal) {
-        scene.player.anims.play('player-walking-down-default');
-      } else {
-        scene.player.anims.play('player-walking-down-gray');
-      }
-  }
+  scene.player.anims.play(`player-walking-${scene.player.currentAnim}-${scene.player.spriteClass}`)
+  
   if (scene.player.stopped) {
     scene.player.anims.stop();
   }
