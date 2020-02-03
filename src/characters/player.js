@@ -94,7 +94,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    stop(walkingSounds) {
+    stop() {
         this.setVelocity(0, 0);
         this.anims.stop(null, 1);
         this.walkingSounds.pause();
@@ -108,7 +108,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     set healed(newhealed) {
         if (this._healed == newhealed) return;
         this._healed = newhealed;
-        
+
         this.updateAnimation();
     }
 }
