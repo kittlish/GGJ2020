@@ -6,9 +6,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.hasWon = false;
         this.currentAnim = "down";
         this.stopped = true;
+        this.playerSpeed = 160;
 
         this.scene = scene;
         this.scene.physics.world.enable(this);
+        this.body.velocity.normalize().scale(this.playerSpeed);
         this.scene.add.existing(this);
 
         this.setSize(12, 10);
@@ -53,4 +55,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    move(direction) {
+        this.currentAnim = direction;
+        this.stopped = false;
+
+        if (direction == 'left') {
+            this.setVelocityX(-this.playerSpeed);
+        } else if (direction == 'right') {
+            this.setVelocityX(this.playerSpeed)
+        } else if (direction == 'up') {
+            this.setVelocityY(-this.playerSpeed)
+        } else if (direction == 'down' ) {
+            this.setVelocityY(this.playerSpeed)
+        }
+
+        this.anims.play(`player-walking-${this.currentAnim}-${this.spriteClass}`)
+        walkingSounds.play();
+    }
 }

@@ -7,38 +7,18 @@ export default function setupMovement (scene, player, walkingSounds) {
         'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
     });
 
-    // Normalize and scale the velocity so that player can't move faster along a diagonal
-    const playerSpeed = 160;
-    player.body.velocity.normalize().scale(playerSpeed);
-
     // Enables movement of player with arrow keys
     scene.input.keyboard.on('keydown_UP', (event) => {
-        player.setVelocityY(-playerSpeed);
-        player.currentAnim = "up";
-        player.stopped = false;
-        player.anims.play(`player-walking-${player.currentAnim}-${player.spriteClass}`)
-        walkingSounds.play();
+        player.move('up', walkingSounds)
     });
     scene.input.keyboard.on('keydown_DOWN', (event) => {
-        player.setVelocityY(playerSpeed);
-        player.currentAnim = "down";
-        player.stopped = false;
-        player.anims.play(`player-walking-${player.currentAnim}-${player.spriteClass}`)
-        walkingSounds.play();
+        player.move('down', walkingSounds)
     });
     scene.input.keyboard.on('keydown_LEFT', (event) => {
-        player.setVelocityX(-playerSpeed);
-        player.currentAnim = "left";
-        player.stopped = false;
-        player.anims.play(`player-walking-${player.currentAnim}-${player.spriteClass}`)
-        walkingSounds.play();
+        player.move('left', walkingSounds)
     });
     scene.input.keyboard.on('keydown_RIGHT', (event) => {
-        player.setVelocityX(playerSpeed);
-        player.currentAnim = "right";
-        player.stopped = false;
-        player.anims.play(`player-walking-${player.currentAnim}-${player.spriteClass}`)
-        walkingSounds.play();
+        player.move('right', walkingSounds)
     });
 
     const allKeysAreUp = function () { return moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp; }
