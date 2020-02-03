@@ -55,7 +55,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    updateMovement(moveKeys) {
+    updateMovement() {
+        // Creates object for input with arrow keys
+        const moveKeys = scene.input.keyboard.addKeys({
+            'up': Phaser.Input.Keyboard.KeyCodes.UP,
+            'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
+            'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
+            'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
+        });
+
         const allMoveKeysAreUp = moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp;
 
         if (allMoveKeysAreUp) {
