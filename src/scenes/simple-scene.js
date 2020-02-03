@@ -1,12 +1,10 @@
 import inRange from '../lib/inRange';
 import callText from '../lib/callText.js';
-import configText from '../lib/configText';
 import displayInteractText from '../lib/displayInteractText';
 import coordinates from '../lib/coordinates';
 import drRedNoseCharacter from '../characters/DrRedNose';
 import Player from '../characters/player';
 import ghostCharacter from '../characters/ghost';
-import setupPlayerMovement from '../lib/setupPlayerMovement';
 import setupDialog from '../lib/setupDialog';
 import updateGhostMovement from "../lib/updateGhostMovement";
 
@@ -111,7 +109,6 @@ export class SimpleScene extends Phaser.Scene {
 
     this.backgroundMusic.play({loop: true});
   }
-
 
   setupMap() {
     this.map = this.make.tilemap({ key: "omegaBuilding" });
