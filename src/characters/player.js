@@ -72,4 +72,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.anims.play(`player-walking-${this.currentAnim}-${this.spriteClass}`)
         walkingSounds.play();
     }
+
+    stop(walkingSounds) {
+        this.anims.stop(null, 1);
+        walkingSounds.pause();
+        this.stopped = true;
+    }
 }

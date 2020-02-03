@@ -29,9 +29,7 @@ export default function setupMovement (scene, player, walkingSounds) {
             player.setVelocityY(0);
         }
         if (allKeysAreUp()) {
-            player.anims.stop(null, 1);
-            walkingSounds.pause();
-            player.stopped = true;
+            player.stop()
         }
     });
     scene.input.keyboard.on('keyup_DOWN', (event) => {
@@ -39,9 +37,7 @@ export default function setupMovement (scene, player, walkingSounds) {
             player.setVelocityY(0);
         }
         if (allKeysAreUp()) {
-            player.anims.stop(null, 1);
-            walkingSounds.pause();
-            player.stopped = true;
+            player.stop()
         }
     });
     scene.input.keyboard.on('keyup_LEFT', (event) => {
@@ -49,9 +45,7 @@ export default function setupMovement (scene, player, walkingSounds) {
             player.setVelocityX(0);
         }
         if (allKeysAreUp()) {
-            player.anims.stop(null, 1);
-            walkingSounds.pause();
-            player.stopped = true;
+            player.stop()
         }
     });
     scene.input.keyboard.on('keyup_RIGHT', (event) => {
@@ -59,9 +53,7 @@ export default function setupMovement (scene, player, walkingSounds) {
             player.setVelocityX(0);
         }
         if (allKeysAreUp()) {
-            player.anims.stop(null, 1);
-            walkingSounds.pause();
-            player.stopped = true;
+            player.stop()
         }
     });
 }

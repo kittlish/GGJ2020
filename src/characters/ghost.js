@@ -13,7 +13,7 @@ export default (scene, coordX, coordY) => {
     });
     scene.anims.create({ key: 'ghostHealedWalkingRight', frames: ghostHealedWalkingRightFrames, frameRate: 6, repeat: -1 });
 
-    ghost1.anims.play('ghostWalkingRight');
+    ghost1.anims.play('ghostHealedWalkingRight');
     ghost1.setScale(2, 2);
     ghost1.setCollideWorldBounds(true);
     return ghost1;
