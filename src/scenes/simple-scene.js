@@ -4,7 +4,7 @@ import configText from '../lib/configText';
 import displayInteractText from '../lib/displayInteractText';
 import coordinates from '../lib/coordinates';
 import drRedNoseCharacter from '../characters/DrRedNose';
-import playerCharacter from '../characters/player';
+import Player from '../characters/player';
 import ghostCharacter from '../characters/ghost';
 import setupPlayerMovement from '../lib/setupPlayerMovement';
 import setupDialog from '../lib/setupDialog';
@@ -33,7 +33,7 @@ export class SimpleScene extends Phaser.Scene {
 
     this.winSquare = this.physics.add.sprite(...coordinates(23.5, 4.5), 'winSquare');
     this.drRedNose = drRedNoseCharacter(this, ...coordinates(9, 18));
-    this.player = playerCharacter(this, ...coordinates(9, 19));
+    this.player = new Player(this, ...coordinates(9, 19))
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
 
     this.spotlight = this.physics.add.sprite(...coordinates(9, 19), 'spotlight')
