@@ -4,368 +4,11 @@
 			"image": "ggj2020.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 128,
-				"h": 323
+				"w": 895,
+				"h": 41
 			},
 			"scale": 1,
 			"frames": [
-				{
-					"filename": "level/Blue bottom.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/big booooi.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 32,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/blick.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 64,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/blu bottom left.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 96,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/blu bottom right.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 0,
-						"y": 32,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/blu left.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 32,
-						"y": 32,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/blu right.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 64,
-						"y": 32,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/blu top right.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 96,
-						"y": 32,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/blu top.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 0,
-						"y": 64,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/blue top left.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 32,
-						"y": 64,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/gm 2.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 64,
-						"y": 64,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/gm.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 96,
-						"y": 64,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "level/walls.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 0,
-						"y": 96,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "npc/dr-red-nose/1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 30,
-						"h": 32
-					},
-					"frame": {
-						"x": 32,
-						"y": 96,
-						"w": 30,
-						"h": 32
-					}
-				},
-				{
-					"filename": "npc/dr-red-nose/2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 30,
-						"h": 32
-					},
-					"frame": {
-						"x": 62,
-						"y": 96,
-						"w": 30,
-						"h": 32
-					}
-				},
-				{
-					"filename": "npc/ghosties/1.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 92,
-						"y": 96,
-						"w": 32,
-						"h": 32
-					}
-				},
-				{
-					"filename": "npc/ghosties/2.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 32,
-						"h": 32
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 32,
-						"h": 32
-					},
-					"frame": {
-						"x": 0,
-						"y": 128,
-						"w": 32,
-						"h": 32
-					}
-				},
 				{
 					"filename": "player/down/default/1.png",
 					"rotated": false,
@@ -381,8 +24,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 32,
-						"y": 128,
+						"x": 1,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -402,8 +45,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 49,
-						"y": 128,
+						"x": 20,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -423,8 +66,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 66,
-						"y": 128,
+						"x": 39,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -444,8 +87,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 83,
-						"y": 128,
+						"x": 58,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -465,8 +108,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 100,
-						"y": 128,
+						"x": 77,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -486,8 +129,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 0,
-						"y": 160,
+						"x": 96,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -507,8 +150,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 17,
-						"y": 167,
+						"x": 115,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -528,8 +171,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 34,
-						"y": 167,
+						"x": 134,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -549,8 +192,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 51,
-						"y": 167,
+						"x": 153,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -570,8 +213,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 68,
-						"y": 167,
+						"x": 172,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -591,8 +234,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 85,
-						"y": 167,
+						"x": 191,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -612,8 +255,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 102,
-						"y": 167,
+						"x": 210,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -633,8 +276,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 0,
-						"y": 199,
+						"x": 229,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -654,8 +297,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 17,
-						"y": 206,
+						"x": 248,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -675,8 +318,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 34,
-						"y": 206,
+						"x": 267,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -696,8 +339,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 51,
-						"y": 206,
+						"x": 286,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -717,8 +360,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 68,
-						"y": 206,
+						"x": 305,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -738,8 +381,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 68,
-						"y": 206,
+						"x": 305,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -759,8 +402,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 85,
-						"y": 206,
+						"x": 324,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -780,8 +423,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 102,
-						"y": 206,
+						"x": 343,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -801,8 +444,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 0,
-						"y": 238,
+						"x": 362,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -822,8 +465,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 17,
-						"y": 245,
+						"x": 381,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -843,8 +486,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 34,
-						"y": 245,
+						"x": 400,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -864,8 +507,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 51,
-						"y": 245,
+						"x": 419,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -885,8 +528,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 68,
-						"y": 245,
+						"x": 438,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -906,8 +549,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 85,
-						"y": 245,
+						"x": 457,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -927,8 +570,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 102,
-						"y": 245,
+						"x": 476,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -948,8 +591,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 0,
-						"y": 277,
+						"x": 495,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -969,8 +612,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 17,
-						"y": 284,
+						"x": 514,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -990,8 +633,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 34,
-						"y": 284,
+						"x": 533,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -1011,8 +654,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 51,
-						"y": 284,
+						"x": 552,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -1032,8 +675,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 68,
-						"y": 284,
+						"x": 571,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -1053,8 +696,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 85,
-						"y": 284,
+						"x": 590,
+						"y": 1,
 						"w": 17,
 						"h": 39
 					}
@@ -1074,10 +717,178 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 102,
-						"y": 284,
+						"x": 609,
+						"y": 1,
 						"w": 17,
 						"h": 39
+					}
+				},
+				{
+					"filename": "npc/ghosties/default/1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 628,
+						"y": 1,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "npc/ghosties/default/2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 662,
+						"y": 1,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "npc/ghosties/healed/1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 696,
+						"y": 1,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "npc/ghosties/healed/2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 730,
+						"y": 1,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "npc/ghosties/healed/3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 764,
+						"y": 1,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "npc/ghosties/healed/4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 32
+					},
+					"frame": {
+						"x": 798,
+						"y": 1,
+						"w": 32,
+						"h": 32
+					}
+				},
+				{
+					"filename": "npc/dr-red-nose/1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 30,
+						"h": 32
+					},
+					"frame": {
+						"x": 832,
+						"y": 1,
+						"w": 30,
+						"h": 32
+					}
+				},
+				{
+					"filename": "npc/dr-red-nose/2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 30,
+						"h": 32
+					},
+					"frame": {
+						"x": 864,
+						"y": 1,
+						"w": 30,
+						"h": 32
 					}
 				}
 			]
@@ -1086,6 +897,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:202da0819aea3032e9e34a470c4ca84f:34126e1d95521b6c906de1e408eb3edd:178f7710d789496cdfa552364e9f74ac$"
+		"smartupdate": "$TexturePacker:SmartUpdate:f95af3944c0a02dabe4e8af0050472ea:a3f355a8a007dc3401d2c2feaa22af3e:178f7710d789496cdfa552364e9f74ac$"
 	}
 }
