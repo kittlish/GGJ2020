@@ -44,4 +44,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         // Starts the player in the Walking Up animation
         this.anims.play('player-walking-up-default');
     }
+
+    get spriteClass() {
+        if (this.healed) {
+            return 'default';
+        } else {
+            return 'gray';
+        }
+    }
+
 }
