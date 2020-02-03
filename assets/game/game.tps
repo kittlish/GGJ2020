@@ -56,7 +56,7 @@
         <key>jxrCompressionLevel</key>
         <uint>0</uint>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">PngQuantLow</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>
@@ -102,7 +102,7 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
@@ -132,7 +132,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>../ggj2020.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -163,7 +163,7 @@
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
             <key>extrude</key>
-            <uint>1</uint>
+            <uint>0</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMargin</key>
@@ -181,14 +181,14 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/npc/dr-red-nose/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/npc/dr-red-nose/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/npc/ghosties/default/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/npc/ghosties/default/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/npc/ghosties/healed/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/npc/ghosties/healed/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/npc/ghosties/healed/3.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/npc/ghosties/healed/4.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/npc/dr-red-nose/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/npc/dr-red-nose/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/npc/ghosties/default/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/npc/ghosties/default/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/npc/ghosties/healed/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/npc/ghosties/healed/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/npc/ghosties/healed/3.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/npc/ghosties/healed/4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -203,48 +203,48 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/down/default/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/down/default/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/down/gray/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/down/gray/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/down/gray/3.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/down/gray/4.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/down/gray/5.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/down/gray/6.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/left/default/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/left/default/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/left/gray/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/left/gray/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/left/gray/3.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/left/gray/4.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/left/gray/5.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/left/gray/6.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/default/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/default/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/default/3.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/default/4.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/gray/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/gray/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/gray/3.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/gray/4.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/gray/5.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/right/gray/6.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/standing/default/back.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/standing/default/front.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/standing/default/left.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/standing/default/right.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/standing/gray/back.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/standing/gray/front.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/standing/gray/left.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/standing/gray/right.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/up/default/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/up/default/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/up/gray/1.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/up/gray/2.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/up/gray/3.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/up/gray/4.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/up/gray/5.png</key>
-            <key type="filename">../Documents/projects/GGJ2020 - Assets/game/player/up/gray/6.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/down/default/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/down/default/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/down/gray/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/down/gray/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/down/gray/3.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/down/gray/4.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/down/gray/5.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/down/gray/6.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/left/default/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/left/default/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/left/gray/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/left/gray/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/left/gray/3.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/left/gray/4.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/left/gray/5.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/left/gray/6.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/default/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/default/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/default/3.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/default/4.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/gray/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/gray/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/gray/3.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/gray/4.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/gray/5.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/right/gray/6.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/standing/default/back.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/standing/default/front.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/standing/default/left.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/standing/default/right.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/standing/gray/back.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/standing/gray/front.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/standing/gray/left.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/standing/gray/right.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/up/default/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/up/default/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/up/gray/1.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/up/gray/2.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/up/gray/3.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/up/gray/4.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/up/gray/5.png</key>
+            <key type="filename">../../../GGJ2020 - Assets/game/player/up/gray/6.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -262,7 +262,7 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>../Documents/projects/GGJ2020 - Assets/game</filename>
+            <filename>../../../GGJ2020 - Assets/game</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
