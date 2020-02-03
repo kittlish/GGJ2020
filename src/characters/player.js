@@ -55,15 +55,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    move(direction, walkingSounds, moveKeys) {
-        this.currentAnim = direction;
-        this.stopped = false;
-
+    move(moveKeys) {
         const allMoveKeysAreUp = moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp;
 
         if (allMoveKeysAreUp) {
             this.stop();
         } else {
+            this.stopped = false;
             if (moveKeys['up'].isDown == moveKeys['down'].isDown) {
                 this.setVelocityY(0);
             } else if (moveKeys['up'].isDown) {

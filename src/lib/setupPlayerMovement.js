@@ -10,29 +10,29 @@ export default function setupMovement (scene, player) {
 
     // Enables movement of player with arrow keys
     scene.input.keyboard.on('keydown_UP', (event) => {
-        player.move('up', walkingSounds, moveKeys)
+        player.move(moveKeys)
     });
     scene.input.keyboard.on('keydown_DOWN', (event) => {
-        player.move('down', walkingSounds, moveKeys)
+        player.move(moveKeys)
     });
     scene.input.keyboard.on('keydown_LEFT', (event) => {
-        player.move('left', walkingSounds, moveKeys)
+        player.move(moveKeys)
     });
     scene.input.keyboard.on('keydown_RIGHT', (event) => {
-        player.move('right', walkingSounds, moveKeys)
+        player.move(moveKeys)
     });
 
     scene.input.keyboard.on('keyup_UP', (event) => {
-        player.move('up', walkingSounds, moveKeys)
+        player.move(moveKeys)
     });
     scene.input.keyboard.on('keyup_DOWN', (event) => {
-        player.move('down', walkingSounds, moveKeys)
+        player.move(moveKeys)
     });
     scene.input.keyboard.on('keyup_LEFT', (event) => {
-        player.move('left', walkingSounds, moveKeys)
+        player.move(moveKeys)
     });
     scene.input.keyboard.on('keyup_RIGHT', (event) => {
-        player.move('right', walkingSounds, moveKeys)
+        player.move(moveKeys)
     });
 
 
