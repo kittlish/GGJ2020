@@ -55,7 +55,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    move(moveKeys) {
+    updateMovement(moveKeys) {
         const allMoveKeysAreUp = moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp;
 
         if (allMoveKeysAreUp) {
