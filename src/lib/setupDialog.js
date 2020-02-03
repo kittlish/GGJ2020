@@ -1,6 +1,7 @@
 import inRange from '../lib/inRange';
 import configText from '../lib/configText';
 import callText from '../lib/callText';
+import setupPlayerMovement from '../lib/setupPlayerMovement';
 
 export default function setupDialog(scene){
 
@@ -36,7 +37,7 @@ export default function setupDialog(scene){
     var myline;
 
     var lines = [
-      { speaker: 'Dr. R', line: 'Dr. Rednose: Hello-ho-ho-ho you, over there! Please, help me!' },
+      { speaker: 'Dr. R', line: 'Dr. Rednose: Hello-ho-ho-ho you, over there! Please, help me! (press z to continue)' },
       { speaker: 'Healda', line: 'Healda: o.O ...' },
       { speaker: 'Dr. R', line: 'well?' },
       { speaker: 'Healda', line: 'bee boop' },
@@ -55,15 +56,22 @@ export default function setupDialog(scene){
 
     ]
 
-    var helloText = 'Welcome to our game!';
+    var helloText = '';
 
     callText(mainText, helloText);
     setTimeout(() => { callText(mainText, '') }, 2000);
 
     var currentTextObj;
 
-
-    scene.input.keyboard.on('keydown_SPACE', (event) => {
+    myline = lines[startingLine];
+    if (myline.speaker == 'Dr. R') {
+      callText(drRText, trimLine(myline.line));
+    }
+    if (myline.speaker == 'Healda') {
+      callText(healdaText, trimLine(myline.line));
+    }
+    startingLine = (startingLine + 1) % (lines.length + 1);
+    scene.input.keyboard.on('keydown_Z', (event) => {
       if(inRange(scene.player, scene.drRedNose)){
         if (startingLine > 0) {
           drRText.setText('');
@@ -81,6 +89,11 @@ export default function setupDialog(scene){
   
         }
         startingLine = (startingLine + 1) % (lines.length + 1);
+        if (startingLine == lines.length) {
+          setupPlayerMovement(scene, scene.player, scene.steps);
+          scene.ghost.canMove = true;
+          displayHelpText(scene);
+        }
       }else{
         drRText.setText('');
         healdaText.setText('');
@@ -88,4 +101,16 @@ export default function setupDialog(scene){
     });
 
 
+}
+
+function displayHelpText(scene) {
+  // Help text that has a "fixed" position on the screen
+  scene.add
+    .text(20, 16, "arrow keys to move", {
+      font: "18px monospace",
+      fill: "#ffffff",
+      padding: { x: 20, y: 10 },
+      backgroundColor: "#000000"
+    })
+    .setScrollFactor(0);
 }

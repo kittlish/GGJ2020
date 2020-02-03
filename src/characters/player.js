@@ -1,9 +1,13 @@
 export default (scene, coordX, coordY) => {
     var player = scene.physics.add.sprite(coordX, coordY, 'playerBase');
-    player.setSize(10, 15);
-    player.setOffset(0, 30);
+    player.setSize(12, 10);
+    player.setOffset(1, 30);
     player.setScale(1.5);
-    player.healed = false;
+    player.healed = true;
+    console.log("oh no");
+    player.hasWon = false;
+    player.currentAnim = "down";
+    player.stopped = true;
 
     var playerWalkingRightFrames = scene.anims.generateFrameNames('allSprites', {
         start: 1, end: 2, zeroPad: 1,
@@ -66,6 +70,9 @@ export default (scene, coordX, coordY) => {
 
     // player.anims.play('grayPlayerStandingDown');
     player.setCollideWorldBounds(true);
+
+    // Starts the player in the Walking Up animation
+    player.anims.play('playerWalkingUp');
 
     return player;
 }
