@@ -74,7 +74,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     updateAnimation() {
-        this.anims.play(`player-walking-${this.currentAnim}-${this.spriteClass}`)
+        this.anims.play(`player-walking-${this.currentAnim}-${this.spriteClass}`, true)
 
         if (this.stopped) {
             this.anims.stop();

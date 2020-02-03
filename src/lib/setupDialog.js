@@ -1,7 +1,6 @@
 import inRange from '../lib/inRange';
 import configText from '../lib/configText';
 import callText from '../lib/callText';
-import setupPlayerMovement from '../lib/setupPlayerMovement';
 
 export default function setupDialog(scene){
 
@@ -90,7 +89,6 @@ export default function setupDialog(scene){
         }
         startingLine = (startingLine + 1) % (lines.length + 1);
         if (startingLine == lines.length) {
-          setupPlayerMovement(scene, scene.player);
           scene.ghost.canMove = true;
           displayHelpText(scene);
         }
