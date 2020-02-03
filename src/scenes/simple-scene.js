@@ -84,8 +84,10 @@ export class SimpleScene extends Phaser.Scene {
     this.spotlight.y = this.player.y;
 
     this.cameras.main.centerOn(this.player.x, this.player.y);
-    updateGhostMovement(this.ghost, this.player);
-    freakOutNearGhost(this);
+    if (!scene.player.hasWon) {
+      updateGhostMovement(this.ghost, this.player);
+      freakOutNearGhost(this);
+    }
   }
 
   winner() {
@@ -136,7 +138,8 @@ function updatePlayerHeal(scene, intendedHeal) {
 }
 
 function freakOutNearGhost(scene) {
-  if (inRange(scene.player, scene.ghost, 80) && !scene.player.hasWon) {
+  const nearGhost = inRange(scene.player, scene.ghost, 80);
+  if (nearGhost) {
     if (!scene.spooky.isPlaying) {
       scene.spooky.play();
     }
