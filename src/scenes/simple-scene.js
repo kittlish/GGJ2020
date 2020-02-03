@@ -84,7 +84,7 @@ export class SimpleScene extends Phaser.Scene {
     this.spotlight.y = this.player.y;
 
     this.cameras.main.centerOn(this.player.x, this.player.y);
-    if (!scene.player.hasWon) {
+    if (!this.player.hasWon) {
       updateGhostMovement(this.ghost, this.player);
       freakOutNearGhost(this);
     }
@@ -130,7 +130,7 @@ function victoryTheme(scene) {
 function updatePlayerHeal(scene, intendedHeal) {
   if (scene.player.healed == intendedHeal) return;
   scene.player.healed = intendedHeal;
-  scene.player.anims.play(`player-walking-${scene.player.currentAnim}-${scene.player.spriteClass}`)
+  scene.player.updateAnimation();
 
   if (scene.player.stopped) {
     scene.player.anims.stop();
@@ -140,10 +140,12 @@ function updatePlayerHeal(scene, intendedHeal) {
 function freakOutNearGhost(scene) {
   const nearGhost = inRange(scene.player, scene.ghost, 80);
   if (nearGhost) {
+    updatePlayerHeal(scene, false);
+
     if (!scene.spooky.isPlaying) {
       scene.spooky.play();
     }
-    updatePlayerHeal(scene, false);
+
     var ghostText = scene.add
       .text(320, 60, "get away from the ghost!", {
         font: "18px monospace",
