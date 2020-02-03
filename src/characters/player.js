@@ -2,7 +2,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor (scene, coordX, coordY) {
         super(...arguments, 'playerBase');
 
-        this.healed = true;
+        this._healed = true;
         this.hasWon = false;
         this.currentAnim = "down";
         this.stopped = true;
@@ -88,6 +88,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     updateAnimation() {
         this.anims.play(`player-walking-${this.currentAnim}-${this.spriteClass}`)
+
+        if (this.stopped) {
+            this.anims.stop();
+        }
     }
 
     stop(walkingSounds) {
@@ -95,5 +99,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.anims.stop(null, 1);
         this.walkingSounds.pause();
         this.stopped = true;
+    }
+
+    get healed() {
+        return this._healed;
+    }
+
+    set healed(newhealed) {
+        if (this._healed == newhealed) return;
+        this._healed = newhealed;
+        
+        this.updateAnimation();
     }
 }

@@ -127,20 +127,10 @@ function victoryTheme(scene) {
   victoryMusic.play();
 }
 
-function updatePlayerHeal(scene, intendedHeal) {
-  if (scene.player.healed == intendedHeal) return;
-  scene.player.healed = intendedHeal;
-  scene.player.updateAnimation();
-
-  if (scene.player.stopped) {
-    scene.player.anims.stop();
-  }
-}
-
 function freakOutNearGhost(scene) {
   const nearGhost = inRange(scene.player, scene.ghost, 80);
   if (nearGhost) {
-    updatePlayerHeal(scene, false);
+    scene.player.healed = false;
 
     if (!scene.spooky.isPlaying) {
       scene.spooky.play();
@@ -156,6 +146,6 @@ function freakOutNearGhost(scene) {
       .setScrollFactor(0);
     setTimeout(() => { ghostText.destroy(true) }, 10);
   } else if (!scene.player.healed) {
-    updatePlayerHeal(this, true);
+    scene.player.healed = true;
   }
 }
