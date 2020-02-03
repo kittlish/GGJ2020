@@ -1,3 +1,5 @@
+import extractAnimationsFromSpritesheet from '../lib/extractAnimationsFromSpritesheet';
+
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor (scene, coordX, coordY) {
         super(...arguments, 'playerBase');
@@ -98,7 +100,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     setUpAnimations() {
-        // set up animation frames
         var animationsWithSources = {
             'player-walking-left-default': 'player/left/default/',
             'player-walking-right-default': 'player/right/default/',
@@ -110,17 +111,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             'player-walking-down-gray': 'player/down/gray/',
         }
 
-        Object.keys(animationsWithSources).forEach((animationKey) => {
-            var frames = this.scene.anims.generateFrameNames('allSprites', {
-                start: 1, end: 2, zeroPad: 1,
-                prefix: animationsWithSources[animationKey], suffix: '.png'
-            });
-            this.scene.anims.create({
-                key: animationKey,
-                frames: frames,
-                frameRate: 6,
-                repeat: -1
-            })
-        })
+        extractAnimationsFromSpritesheet(this.scene, animationsWithSources);
     }
 }
