@@ -55,27 +55,43 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    move(direction) {
+    move(direction, walkingSounds, moveKeys) {
         this.currentAnim = direction;
         this.stopped = false;
 
-        if (direction == 'left') {
-            this.setVelocityX(-this.playerSpeed);
-        } else if (direction == 'right') {
-            this.setVelocityX(this.playerSpeed)
-        } else if (direction == 'up') {
-            this.setVelocityY(-this.playerSpeed)
-        } else if (direction == 'down' ) {
-            this.setVelocityY(this.playerSpeed)
-        }
+        const allMoveKeysAreUp = moveKeys['up'].isUp && moveKeys['down'].isUp && moveKeys['left'].isUp && moveKeys['right'].isUp;
 
-        this.anims.play(`player-walking-${this.currentAnim}-${this.spriteClass}`)
-        walkingSounds.play();
+        if (allMoveKeysAreUp) {
+            this.stop();
+        } else {
+            if (moveKeys['up'].isDown == moveKeys['down'].isDown) {
+                this.setVelocityY(0);
+            } else if (moveKeys['up'].isDown) {
+                this.setVelocityY(-this.playerSpeed)
+                this.currentAnim = 'up';
+            } else {
+                this.setVelocityY(this.playerSpeed);
+                this.currentAnim = 'down';
+            }
+            if (moveKeys['left'].isDown == moveKeys['right'].isDown) {
+                this.setVelocityX(0);
+            } else if (moveKeys['left'].isDown) {
+                this.setVelocityX(-this.playerSpeed);
+                this.currentAnim = 'left';
+            } else {
+                this.setVelocityX(this.playerSpeed);
+                this.currentAnim = 'right';
+            }
+
+            this.anims.play(`player-walking-${this.currentAnim}-${this.spriteClass}`)
+            this.walkingSounds.play();
+        }
     }
 
     stop(walkingSounds) {
+        this.setVelocity(0, 0);
         this.anims.stop(null, 1);
-        walkingSounds.pause();
+        this.walkingSounds.pause();
         this.stopped = true;
     }
 }

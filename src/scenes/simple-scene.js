@@ -36,7 +36,16 @@ export class SimpleScene extends Phaser.Scene {
     this.player = new Player(this, ...coordinates(9, 19))
     this.ghost = ghostCharacter(this, ...coordinates(10, 15));
 
+    this.player.walkingSounds = this.sound.add('steps');
+    
     this.spotlight = this.physics.add.sprite(...coordinates(9, 19), 'spotlight')
+
+    this.moveKeys = this.input.keyboard.addKeys({
+      'up': Phaser.Input.Keyboard.KeyCodes.UP,
+      'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
+      'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
+      'right': Phaser.Input.Keyboard.KeyCodes.RIGHT
+    });
 
     //The things the player can interact with in the game.  When the player is nearby, they'll be prompted with help text.
     var interactables = [this.drRedNose, this.winSquare];
@@ -113,7 +122,6 @@ export class SimpleScene extends Phaser.Scene {
 
   setupMusic() {
     this.backgroundMusic = this.sound.add('main_background_music');
-    this.steps = this.sound.add('steps');
     this.spooky = this.sound.add('spooky');
 
     this.backgroundMusic.play({loop: true});
