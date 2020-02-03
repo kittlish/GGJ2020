@@ -16,44 +16,28 @@ export default function setupMovement (scene, player, walkingSounds) {
         player.setVelocityY(-playerSpeed);
         player.currentAnim = "up";
         player.stopped = false;
-        if (player.healed) {
-            player.anims.play('player-walking-up-default');
-        } else { // injured
-            player.anims.play('player-walking-up-gray');
-        }
+        player.anims.play(`player-walking-${player.currentAnim}-${player.spriteClass}`)
         walkingSounds.play();
     });
     scene.input.keyboard.on('keydown_DOWN', (event) => {
         player.setVelocityY(playerSpeed);
         player.currentAnim = "down";
         player.stopped = false;
-        if (player.healed) {
-            player.anims.play('player-walking-down-default');
-        } else { // injured
-            player.anims.play('player-walking-down-gray');
-        }
+        player.anims.play(`player-walking-${player.currentAnim}-${player.spriteClass}`)
         walkingSounds.play();
     });
     scene.input.keyboard.on('keydown_LEFT', (event) => {
         player.setVelocityX(-playerSpeed);
         player.currentAnim = "left";
         player.stopped = false;
-        if (player.healed) {
-            player.anims.play('player-walking-left-default');
-        } else { // injured
-            player.anims.play('player-walking-left-gray');
-        }
+        player.anims.play(`player-walking-${player.currentAnim}-${player.spriteClass}`)
         walkingSounds.play();
     });
     scene.input.keyboard.on('keydown_RIGHT', (event) => {
         player.setVelocityX(playerSpeed);
         player.currentAnim = "right";
         player.stopped = false;
-        if (player.healed) {
-            player.anims.play('player-walking-right-default');
-        } else { // injured
-            player.anims.play('player-walking-right-gray');
-        }
+        player.anims.play(`player-walking-${player.currentAnim}-${player.spriteClass}`)
         walkingSounds.play();
     });
 
