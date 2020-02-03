@@ -140,27 +140,27 @@ function updatePlayerHeal(scene, intendedHeal) {
   switch (scene.player.currentAnim) {
     case "right":
       if(intendedHeal) {
-        scene.player.anims.play('playerWalkingRight');
+        scene.player.anims.play('player-walking-right-default');
       } else {
-        scene.player.anims.play('grayPlayerWalkingRight');
+        scene.player.anims.play('player-walking-right-gray');
       }
     case "left":
       if (intendedHeal) {
-        scene.player.anims.play('playerWalkingLeft');
+        scene.player.anims.play('player-walking-left-default');
       } else {
-        scene.player.anims.play('grayPlayerWalkingLeft');
+        scene.player.anims.play('player-walking-left-gray');
       }
     case "up":
       if (intendedHeal) {
-        scene.player.anims.play('playerWalkingUp');
+        scene.player.anims.play('player-walking-up-default');
       } else {
-        scene.player.anims.play('grayPlayerWalkingUp');
+        scene.player.anims.play('player-walking-up-gray');
       }
     default:
       if (intendedHeal) {
-        scene.player.anims.play('playerWalkingDown');
+        scene.player.anims.play('player-walking-down-default');
       } else {
-        scene.player.anims.play('grayPlayerWalkingDown');
+        scene.player.anims.play('player-walking-down-gray');
       }
   }
   if (scene.player.stopped) {

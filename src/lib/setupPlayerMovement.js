@@ -17,9 +17,9 @@ export default function setupMovement (scene, player, walkingSounds) {
         player.currentAnim = "up";
         player.stopped = false;
         if (player.healed) {
-            player.anims.play('playerWalkingUp');
+            player.anims.play('player-walking-up-default');
         } else { // injured
-            player.anims.play('grayPlayerWalkingUp');
+            player.anims.play('player-walking-up-gray');
         }
         walkingSounds.play();
     });
@@ -28,9 +28,9 @@ export default function setupMovement (scene, player, walkingSounds) {
         player.currentAnim = "down";
         player.stopped = false;
         if (player.healed) {
-            player.anims.play('playerWalkingDown');
+            player.anims.play('player-walking-down-default');
         } else { // injured
-            player.anims.play('grayPlayerWalkingDown');
+            player.anims.play('player-walking-down-gray');
         }
         walkingSounds.play();
     });
@@ -39,9 +39,9 @@ export default function setupMovement (scene, player, walkingSounds) {
         player.currentAnim = "left";
         player.stopped = false;
         if (player.healed) {
-            player.anims.play('playerWalkingLeft');
+            player.anims.play('player-walking-left-default');
         } else { // injured
-            player.anims.play('grayPlayerWalkingLeft');
+            player.anims.play('player-walking-left-gray');
         }
         walkingSounds.play();
     });
@@ -50,9 +50,9 @@ export default function setupMovement (scene, player, walkingSounds) {
         player.currentAnim = "right";
         player.stopped = false;
         if (player.healed) {
-            player.anims.play('playerWalkingRight');
+            player.anims.play('player-walking-right-default');
         } else { // injured
-            player.anims.play('grayPlayerWalkingRight');
+            player.anims.play('player-walking-right-gray');
         }
         walkingSounds.play();
     });

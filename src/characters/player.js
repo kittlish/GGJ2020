@@ -18,14 +18,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         // set up animation frames
         var animationsWithSources = {
-            'playerWalkingLeft': 'player/left/default/',
-            'playerWalkingRight': 'player/right/default/',
-            'playerWalkingUp': 'player/up/default/',
-            'playerWalkingDown': 'player/down/default/',
-            'grayPlayerWalkingLeft': 'player/left/gray/',
-            'grayPlayerWalkingRight': 'player/right/gray/',
-            'grayPlayerWalkingUp': 'player/up/gray/',
-            'grayPlayerWalkingDown': 'player/down/gray/',
+            'player-walking-left-default': 'player/left/default/',
+            'player-walking-right-default': 'player/right/default/',
+            'player-walking-up-default': 'player/up/default/',
+            'player-walking-down-default': 'player/down/default/',
+            'player-walking-left-gray': 'player/left/gray/',
+            'player-walking-right-gray': 'player/right/gray/',
+            'player-walking-up-gray': 'player/up/gray/',
+            'player-walking-down-gray': 'player/down/gray/',
         }
 
         Object.keys(animationsWithSources).forEach((animationKey) => {
@@ -33,7 +33,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                 start: 1, end: 2, zeroPad: 1,
                 prefix: animationsWithSources[animationKey], suffix: '.png'
             });
-            debugger;
             scene.anims.create({
                 key: animationKey,
                 frames: frames,
@@ -43,6 +42,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         })
 
         // Starts the player in the Walking Up animation
-        this.anims.play('playerWalkingUp');
+        this.anims.play('player-walking-up-default');
     }
 }
