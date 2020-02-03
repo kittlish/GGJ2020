@@ -85,24 +85,7 @@ export class SimpleScene extends Phaser.Scene {
 
     this.cameras.main.centerOn(this.player.x, this.player.y);
     updateGhostMovement(this.ghost, this.player);
-    if (inRange(this.player, this.ghost, 80) && !this.player.hasWon) {
-      if (!this.spooky.isPlaying) {
-        this.spooky.play();
-      }
-      updatePlayerHeal(this, false);
-      var ghostText = this.add
-        .text(320, 60, "get away from the ghost!", {
-          font: "18px monospace",
-          fill: "#ffffff",
-          padding: { x: 20, y: 10 },
-          backgroundColor: "#000000"
-        })
-        .setScrollFactor(0);
-      setTimeout(() => { ghostText.destroy(true) }, 10);
-    } else if (!this.player.healed) {
-      updatePlayerHeal(this, true);
-      
-    }
+    freakOutNearGhost(this);
   }
 
   winner() {
@@ -146,8 +129,28 @@ function updatePlayerHeal(scene, intendedHeal) {
   if (scene.player.healed == intendedHeal) return;
   scene.player.healed = intendedHeal;
   scene.player.anims.play(`player-walking-${scene.player.currentAnim}-${scene.player.spriteClass}`)
-  
+
   if (scene.player.stopped) {
     scene.player.anims.stop();
+  }
+}
+
+function freakOutNearGhost(scene) {
+  if (inRange(scene.player, scene.ghost, 80) && !scene.player.hasWon) {
+    if (!scene.spooky.isPlaying) {
+      scene.spooky.play();
+    }
+    updatePlayerHeal(scene, false);
+    var ghostText = scene.add
+      .text(320, 60, "get away from the ghost!", {
+        font: "18px monospace",
+        fill: "#ffffff",
+        padding: { x: 20, y: 10 },
+        backgroundColor: "#000000"
+      })
+      .setScrollFactor(0);
+    setTimeout(() => { ghostText.destroy(true) }, 10);
+  } else if (!scene.player.healed) {
+    updatePlayerHeal(this, true);
   }
 }
