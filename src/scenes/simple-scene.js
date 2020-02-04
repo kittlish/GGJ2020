@@ -71,6 +71,7 @@ export class SimpleScene extends Phaser.Scene {
       }
     });
 
+    this.player.body.setEnable(false);
     setupDialog(this);
   }
 

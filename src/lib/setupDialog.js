@@ -91,6 +91,7 @@ export default function setupDialog(scene){
         if (startingLine == lines.length) {
           scene.ghost.canMove = true;
           displayHelpText(scene);
+          scene.player.body.setEnable(true);
         }
       }else{
         drRText.setText('');
