@@ -2,7 +2,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "start": "webpack-dev-server",
-    "publish": "npm run build && butler push build kittlish/weary:web"
+    "publish": "butler push build kittlish/weary:web"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
